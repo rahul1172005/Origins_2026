@@ -13,7 +13,12 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Multi-layered parallax transforms
+  // Mascot Static Attributes: Scale, X-axis, Y-axis
+  const mascotScale = 1.10;
+  const mascotX = 0; // in px
+  const mascotY = -10; // in px
+
+  // Multi-layered parallax transforms for typography
   const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "38%"]);
   const titleScale = useTransform(scrollYProgress, [0, 1], [1, 0.96]);
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.15]);
@@ -31,8 +36,14 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-[85vh] sm:min-h-[90vh] bg-white flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24 pt-6 pb-16 w-full overflow-hidden"
     >
-      {/* Static 3D Mascot Builder Image (No animation, no glow) */}
-      <div className="absolute right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 top-8 sm:top-12 md:top-16 lg:top-10 z-20 pointer-events-none select-none">
+      {/* 3D Mascot Builder Image with Scale, X-axis, and Y-axis Attributes */}
+      <div
+        style={{
+          transform: `translate(${mascotX}px, ${mascotY}px) scale(${mascotScale})`,
+          transformOrigin: "center center",
+        }}
+        className="absolute right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 top-8 sm:top-12 md:top-16 lg:top-10 z-20 pointer-events-none select-none"
+      >
         <div className="w-32 sm:w-48 md:w-60 lg:w-[300px] xl:w-[380px]">
           <Image
             src={mascotImg}
