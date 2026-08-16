@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import mascotImg from "@/public/images/1.png";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -18,10 +19,10 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.15]);
   const subtitleY = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
 
-  // Mascot 3D Image parallax & motion attributes
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0px", "50px"]);
-  const imageX = useTransform(scrollYProgress, [0, 1], ["0px", "-15px"]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  // Mascot 3D Image parallax & motion attributes (scale, x, y)
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0px", "60px"]);
+  const imageX = useTransform(scrollYProgress, [0, 1], ["0px", "-20px"]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
 
   const scrollToExplore = () => {
     const element = document.getElementById("overview");
@@ -35,46 +36,42 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-[85vh] sm:min-h-[90vh] bg-white flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24 pt-6 pb-16 w-full overflow-hidden"
     >
-      {/* Hero Central Architectural Typography & 3D Mascot Image */}
-      <div className="py-6 sm:py-12 md:py-16 space-y-8 sm:space-y-12 relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 sm:gap-12">
-          {/* Main Title Typography */}
-          <motion.div
-            style={{ y: titleY, scale: titleScale, opacity }}
-            className="select-none will-change-transform origin-left"
-          >
-            <h1 className="text-6xl sm:text-8xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.85] sm:leading-[0.82] font-geist-thin tracking-[-0.05em] sm:tracking-[-0.07em] text-black uppercase break-words">
-              ORIGINS
-            </h1>
-            <h1 className="text-6xl sm:text-8xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.85] sm:leading-[0.82] font-geist-thin tracking-[-0.05em] sm:tracking-[-0.07em] text-black break-words">
-              2026
-            </h1>
-          </motion.div>
+      {/* 3D Mascot Builder Image on the Right with Scale, X, Y Axis Attributes */}
+      <motion.div
+        style={{ y: imageY, x: imageX, scale: imageScale }}
+        initial={{ opacity: 0, scale: 0.8, y: 30, x: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 top-8 sm:top-12 md:top-16 lg:top-10 z-20 pointer-events-none select-none will-change-transform"
+      >
+        <motion.div
+          animate={{ y: [0, -12, 0], rotate: [0, 1, 0, -1, 0] }}
+          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+          className="w-32 sm:w-48 md:w-60 lg:w-[300px] xl:w-[380px]"
+        >
+          <Image
+            src={mascotImg}
+            alt="OUANTUM ORIGINS 2026 Builder Mascot"
+            priority
+            className="w-full h-auto object-contain drop-shadow-2xl"
+          />
+        </motion.div>
+      </motion.div>
 
-          {/* 3D Mascot Builder Image with Scale, X, Y Axis Motion Attributes */}
-          <motion.div
-            style={{ y: imageY, x: imageX, scale: imageScale }}
-            initial={{ opacity: 0, scale: 0.85, y: 35, x: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="flex justify-center lg:justify-end shrink-0 select-none will-change-transform"
-          >
-            <motion.div
-              animate={{ y: [0, -12, 0], rotate: [0, 1, 0, -1, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="relative w-52 sm:w-72 md:w-80 lg:w-[340px] xl:w-[400px] aspect-[3/4]"
-            >
-              <Image
-                src="/images/1.png"
-                alt="OUANTUM ORIGINS 2026 Builder Mascot"
-                fill
-                priority
-                sizes="(max-width: 640px) 208px, (max-width: 768px) 288px, (max-width: 1024px) 320px, 400px"
-                className="object-contain drop-shadow-xl"
-              />
-            </motion.div>
-          </motion.div>
-        </div>
+      {/* Hero Central Architectural Typography */}
+      <div className="py-6 sm:py-12 md:py-16 space-y-8 sm:space-y-12 relative z-10">
+        {/* Main Title Typography */}
+        <motion.div
+          style={{ y: titleY, scale: titleScale, opacity }}
+          className="select-none will-change-transform origin-left max-w-[70vw] lg:max-w-[65vw]"
+        >
+          <h1 className="text-6xl sm:text-8xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.85] sm:leading-[0.82] font-geist-thin tracking-[-0.05em] sm:tracking-[-0.07em] text-black uppercase break-words">
+            ORIGINS
+          </h1>
+          <h1 className="text-6xl sm:text-8xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.85] sm:leading-[0.82] font-geist-thin tracking-[-0.05em] sm:tracking-[-0.07em] text-black break-words">
+            2026
+          </h1>
+        </motion.div>
 
         {/* Subtitle & Actions */}
         <motion.div
