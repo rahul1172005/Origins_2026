@@ -39,7 +39,16 @@ export default function About() {
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-6 text-lg sm:text-xl text-neutral-700 font-inter font-light leading-relaxed">
               <p>
-                ORIGINS is the premier innovation and engineering sprint hosted under the <strong>OUANTUM</strong> program. It is not another hackathon built around shipping another SaaS product, wrapping an API, or presenting an unrealistic business pitch.
+                ORIGINS is the premier innovation and engineering sprint hosted under the{" "}
+                <a
+                  href="https://www.ouantum.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 text-black hover:opacity-75 font-medium"
+                >
+                  OUANTUM
+                </a>{" "}
+                program (<span className="font-mono text-xs sm:text-sm text-neutral-500">www.ouantum.com</span>). It is not another hackathon built around shipping another SaaS product, wrapping an API, or presenting an unrealistic business pitch.
               </p>
               <p className="text-neutral-500">
                 It begins somewhere else.

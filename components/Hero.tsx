@@ -82,7 +82,16 @@ export default function Hero() {
 
           <div className="lg:col-span-6 flex flex-col justify-between space-y-6 sm:space-y-8">
             <p className="text-sm sm:text-lg lg:text-xl text-neutral-600 font-inter font-light leading-relaxed max-w-2xl">
-              A 24-hour applied innovation sprint by <strong>OUANTUM</strong> for ideas that solve real problems, improve lives, and create meaningful systemic impact.
+              A 24-hour applied innovation sprint by{" "}
+              <a
+                href="https://www.ouantum.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 text-black hover:opacity-75 font-medium inline-block"
+              >
+                OUANTUM
+              </a>{" "}
+              (<span className="font-mono text-xs sm:text-sm text-neutral-500">www.ouantum.com</span>) for ideas that solve real problems, improve lives, and create meaningful systemic impact.
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">

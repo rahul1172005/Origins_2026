@@ -225,7 +225,7 @@ export default function Registration() {
             </div>
             <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
               <p className="text-sm sm:text-lg lg:text-xl text-neutral-600 font-inter font-light max-w-lg leading-relaxed">
-                Official registration for the <strong>OUANTUM</strong> ORIGINS 2026 cohort. Secure your team or individual entry. Complete verification details below.
+                Official registration for the <a href="https://www.ouantum.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 font-semibold text-black hover:opacity-75">OUANTUM</a> (<span className="font-mono text-xs text-neutral-500">www.ouantum.com</span>) ORIGINS 2026 cohort. Secure your team or individual entry. Complete verification details below.
               </p>
               <div className="flex items-center gap-4 pt-2">
                 <button
@@ -252,7 +252,7 @@ export default function Registration() {
                 LOOKUP REGISTRATION PASS
               </h3>
               <p className="text-xs sm:text-sm text-neutral-600 font-inter font-light">
-                Enter your assigned Registration ID to inspect entry details and status.
+                Enter your assigned Registration ID to inspect entry details and status on the OUANTUM platform (www.ouantum.com).
               </p>
             </div>
 
@@ -352,7 +352,7 @@ export default function Registration() {
                 REGISTRATION RECEIVED.
               </h3>
               <p className="text-sm sm:text-lg text-neutral-700 font-inter font-light">
-                You&apos;re now part of the OUANTUM ORIGINS 2026 cohort.
+                You&apos;re now part of the OUANTUM (<a href="https://www.ouantum.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">www.ouantum.com</a>) ORIGINS 2026 cohort.
               </p>
             </div>
 
@@ -363,6 +363,14 @@ export default function Registration() {
                   <h4 className="text-xl sm:text-2xl font-geist-light tracking-tight text-black">
                     OUANTUM ORIGINS 2026
                   </h4>
+                  <a
+                    href="https://www.ouantum.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] font-mono text-neutral-400 hover:text-black transition-colors"
+                  >
+                    www.ouantum.com ↗
+                  </a>
                 </div>
 
                 <div className="text-left sm:text-right">

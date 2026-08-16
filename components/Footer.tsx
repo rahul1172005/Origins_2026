@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
       </motion.div>
 
-      {/* 3. CLEAN TYPOGRAPHICAL FOOTER COLUMNS (Title Case, not all caps) */}
+      {/* 3. CLEAN TYPOGRAPHICAL FOOTER COLUMNS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 pt-4 sm:pt-8">
         {/* Col 1: OUANTUM Program */}
         <div className="space-y-2 sm:space-y-4">
@@ -73,9 +73,14 @@ export default function Footer() {
           <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed max-w-xs">
             ORIGINS 2026 is the flagship engineering and innovation program by OUANTUM. Advancing human systems through consequential technology, open research, and disciplined problem solving.
           </p>
-          <p className="text-xs text-neutral-400 font-inter pt-1">
-            OUANTUM Innovation Platform
-          </p>
+          <a
+            href="https://www.ouantum.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-xs font-mono text-black hover:opacity-75 underline underline-offset-4 pt-1"
+          >
+            www.ouantum.com ↗
+          </a>
         </div>
 
         {/* Col 2: Navigation Links */}
@@ -134,11 +139,21 @@ export default function Footer() {
           </h5>
           <ul className="space-y-2 text-xs tracking-wide text-neutral-700 font-inter">
             <li>
+              <a
+                href="https://www.ouantum.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-black transition-colors font-medium text-black block"
+              >
+                OUANTUM Portal
+              </a>
+            </li>
+            <li>
               <button
                 onClick={() =>
                   openModal(
                     "ORIGINS 2026 RULES & OUANTUM INTEGRITY CHARTER",
-                    "1. Original Code: All primary architecture and software logic must be developed within the 24-hour sprint.\n2. Genuine Problems: Projects must address authentic real-world challenges.\n3. Open Source / Public Repository: Submissions must include public source code for jury auditing.\n4. No Commercial Wrappers: Applications that merely repackage existing third-party SaaS APIs without original logic are disqualified.\n5. Zero Tolerance for Plagiarism: Direct duplication of existing GitHub repositories leads to immediate disqualification."
+                    "1. Original Code: All primary architecture and software logic must be developed within the 24-hour sprint.\n2. Genuine Problems: Projects must address authentic real-world challenges.\n3. Open Source / Public Repository: Submissions must include public source code for jury auditing.\n4. No Commercial Wrappers: Applications that merely repackage existing third-party SaaS APIs without original logic are disqualified.\n5. Zero Tolerance for Plagiarism: Direct duplication of existing GitHub repositories leads to immediate disqualification.\n\nLearn more at www.ouantum.com"
                   )
                 }
                 className="hover:text-black transition-colors cursor-pointer text-left"
@@ -151,7 +166,7 @@ export default function Footer() {
                 onClick={() =>
                   openModal(
                     "CONTACT OUANTUM ORIGINS",
-                    "Direct Inquiries: origins@ouantum.org\nPress & Institutional Partnerships: press@ouantum.org\nEmergency Builder Support: +1 (555) 202-6000\nOUANTUM Innovation Campus, Global Engineering Network."
+                    "Official Portal: www.ouantum.com\nDirect Inquiries: origins@ouantum.org\nPress & Institutional Partnerships: press@ouantum.org\nEmergency Builder Support: +1 (555) 202-6000\nOUANTUM Innovation Campus, Global Engineering Network."
                   )
                 }
                 className="hover:text-black transition-colors cursor-pointer text-left"
@@ -202,9 +217,19 @@ export default function Footer() {
               ORIGINS 2026 is an independent initiative developed by the OUANTUM program. All participant intellectual property remains 100% owned by the builders.
             </p>
           </div>
-          <p className="text-xs tracking-wider text-neutral-400 font-inter pt-2 sm:pt-4">
-            © 2026 OUANTUM
-          </p>
+          <div className="space-y-1 pt-2 sm:pt-4">
+            <p className="text-xs tracking-wider text-neutral-400 font-inter">
+              © 2026 OUANTUM
+            </p>
+            <a
+              href="https://www.ouantum.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] font-mono text-neutral-500 hover:text-black transition-colors block"
+            >
+              www.ouantum.com
+            </a>
+          </div>
         </div>
       </div>
 

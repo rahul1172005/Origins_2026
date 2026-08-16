@@ -13,7 +13,7 @@ const faqs: FAQItem[] = [
   {
     question: "What is the OUANTUM program?",
     answer:
-      "OUANTUM is an applied research and engineering ecosystem empowering builders, scientists, and developers to solve foundational physical and digital problems. ORIGINS 2026 is OUANTUM's flagship 24-hour sprint providing incubation, advisory, and non-dilutive deployment grants.",
+      "OUANTUM (www.ouantum.com) is an applied research and engineering ecosystem empowering builders, scientists, and developers to solve foundational physical and digital problems. ORIGINS 2026 is OUANTUM's flagship 24-hour sprint providing incubation, advisory, and non-dilutive deployment grants.",
   },
   {
     question: "Who can participate?",
@@ -33,7 +33,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is there a registration fee?",
     answer:
-      "No. ORIGINS 2026 is completely free to enter. The OUANTUM program and partner institutions cover all operational, infrastructure, mentorship, and platform expenses.",
+      "No. ORIGINS 2026 is completely free to enter. The OUANTUM program (www.ouantum.com) and partner institutions cover all operational, infrastructure, mentorship, and platform expenses.",
   },
   {
     question: "Do I need prior hackathon experience?",
@@ -111,7 +111,7 @@ export default function FAQ() {
             </div>
             <div className="lg:col-span-6 flex items-end">
               <p className="text-sm sm:text-lg lg:text-xl text-neutral-600 font-inter font-light max-w-lg leading-relaxed">
-                Essential specifics regarding the OUANTUM program, participation structure, technical freedom, judging philosophy, and deliverables.
+                Essential specifics regarding the OUANTUM program (<a href="https://www.ouantum.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 text-black hover:opacity-75">www.ouantum.com</a>), participation structure, technical freedom, judging philosophy, and deliverables.
               </p>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function FAQ() {
               READY TO REGISTER FOR ORIGINS 2026?
             </h3>
             <p className="text-xs sm:text-sm text-neutral-600 font-inter font-light">
-              Individual and team registration is open globally under the OUANTUM program.
+              Individual and team registration is open globally under the OUANTUM program (<a href="https://www.ouantum.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">www.ouantum.com</a>).
             </p>
           </div>
 

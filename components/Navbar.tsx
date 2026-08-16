@@ -22,15 +22,25 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm w-full">
       <div className="w-full px-6 sm:px-10 md:px-16 lg:px-20 py-6 flex items-center justify-between">
-        {/* Brand */}
-        <Link
-          href="/"
-          className="text-left group cursor-pointer"
-        >
-          <span className="block text-xl tracking-tighter font-geist-light text-black group-hover:opacity-70 transition-opacity">
-            ORIGINS 2026
-          </span>
-        </Link>
+        {/* Brand & Program Link */}
+        <div className="flex items-baseline gap-3 sm:gap-4">
+          <Link
+            href="/"
+            className="text-left group cursor-pointer"
+          >
+            <span className="block text-xl tracking-tighter font-geist-light text-black group-hover:opacity-70 transition-opacity">
+              ORIGINS 2026
+            </span>
+          </Link>
+          <a
+            href="https://www.ouantum.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-block text-[11px] font-mono text-neutral-400 hover:text-black transition-colors"
+          >
+            www.ouantum.com ↗
+          </a>
+        </div>
 
         {/* Desktop Navigation (Title case, not all caps) */}
         <nav className="hidden lg:flex items-center gap-8 text-xs tracking-wider font-inter">
@@ -72,7 +82,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Dropdown Menu (Title case) */}
+      {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white px-6 sm:px-10 py-8 space-y-6">
           <div className="flex flex-col space-y-4 text-sm tracking-wider font-inter">
@@ -92,6 +102,18 @@ export default function Navbar() {
               );
             })}
           </div>
+
+          <div className="pt-2">
+            <a
+              href="https://www.ouantum.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono text-neutral-500 hover:text-black transition-colors block py-2"
+            >
+              OUANTUM Program — www.ouantum.com ↗
+            </a>
+          </div>
+
           <Link
             href="/register"
             onClick={() => setMobileMenuOpen(false)}
