@@ -222,7 +222,7 @@ export default function Footer() {
       {/* Modal */}
       {modalContent && (
         <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 sm:p-6 backdrop-blur-sm">
-          <div className="bg-white max-w-xl w-full p-6 sm:p-12 space-y-4 sm:space-y-6 rounded-3xl shadow-2xl animate-fadeIn">
+          <div className="bg-white max-w-xl w-full p-6 sm:p-12 space-y-4 sm:space-y-6 rounded-3xl border border-neutral-200 animate-fadeIn">
             <h3 className="text-xl sm:text-2xl font-geist-light uppercase tracking-tight text-black">
               {modalContent.title}
             </h3>
