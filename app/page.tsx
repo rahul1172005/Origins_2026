@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -12,15 +11,6 @@ import DitherBg from "@/components/DitherBg";
 
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const headingY = useTransform(scrollYProgress, [0, 1], ["40px", "-40px"]);
-  const col1Y = useTransform(scrollYProgress, [0, 1], ["20px", "-20px"]);
-  const col2Y = useTransform(scrollYProgress, [0, 1], ["-15px", "15px"]);
-  const bannerY = useTransform(scrollYProgress, [0, 1], ["25px", "-15px"]);
 
   const portalModules = [
     {
@@ -95,12 +85,9 @@ export default function Home() {
         <div className="space-y-16 sm:space-y-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
             <div className="lg:col-span-5 space-y-3 sm:space-y-4">
-              <motion.h2
-                style={{ y: headingY }}
-                className="text-3xl sm:text-6xl lg:text-7xl font-geist-thin uppercase tracking-tight text-black leading-tight will-change-transform"
-              >
+              <h2 className="text-3xl sm:text-6xl lg:text-7xl font-geist-thin uppercase tracking-tight text-black leading-tight">
                 PLATFORM<br />MODULES
-              </motion.h2>
+              </h2>
             </div>
             <div className="lg:col-span-7 flex items-end">
               <p className="text-sm sm:text-lg lg:text-xl text-neutral-600 font-inter font-light max-w-2xl leading-relaxed">
@@ -111,53 +98,43 @@ export default function Home() {
 
           {/* Module Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {portalModules.map((m, idx) => {
-              const isEven = idx % 2 === 0;
-              return (
-                <motion.div
-                  key={idx}
-                  style={{ y: isEven ? col1Y : col2Y }}
-                  className="will-change-transform"
+            {portalModules.map((m, idx) => (
+              <div key={idx}>
+                <Link
+                  href={m.href}
+                  className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between group cursor-pointer h-full border border-neutral-100"
                 >
-                  <Link
-                    href={m.href}
-                    className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between group cursor-pointer h-full border border-neutral-100"
-                  >
-                    <DitherBg opacity={0.25} />
-                    <div className="relative z-10 space-y-4 sm:space-y-6">
-                      <div className="flex items-baseline justify-between">
-                        <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
-                          MODULE
-                        </span>
-                        <span className="text-xs uppercase tracking-widest text-neutral-500 font-inter font-medium group-hover:text-black transition-colors">
-                          EXPLORE PAGE →
-                        </span>
-                      </div>
-
-                      <div className="space-y-2">
-                        <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
-                          {m.title}
-                        </h3>
-                        <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
-                          {m.headline}
-                        </p>
-                      </div>
+                  <DitherBg opacity={0.25} />
+                  <div className="relative z-10 space-y-4 sm:space-y-6">
+                    <div className="flex items-baseline justify-between">
+                      <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
+                        MODULE
+                      </span>
+                      <span className="text-xs uppercase tracking-widest text-neutral-500 font-inter font-medium group-hover:text-black transition-colors">
+                        EXPLORE PAGE →
+                      </span>
                     </div>
 
-                    <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
-                      {m.detail}
-                    </p>
-                  </Link>
-                </motion.div>
-              );
-            })}
+                    <div className="space-y-2">
+                      <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
+                        {m.title}
+                      </h3>
+                      <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
+                        {m.headline}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                    {m.detail}
+                  </p>
+                </Link>
+              </div>
+            ))}
           </div>
 
           {/* Direct CTA Bar */}
-          <motion.div
-            style={{ y: bannerY }}
-            className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
-          >
+          <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
             <DitherBg opacity={0.25} />
             <div className="relative z-10 space-y-2 text-left">
               <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
@@ -174,7 +151,7 @@ export default function Home() {
             >
               REGISTER NOW →
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 

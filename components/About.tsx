@@ -2,21 +2,10 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
 import DitherBg from "@/components/DitherBg";
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const headingY = useTransform(scrollYProgress, [0, 1], ["40px", "-40px"]);
-  const statementY = useTransform(scrollYProgress, [0, 1], ["30px", "-30px"]);
-  const card1Y = useTransform(scrollYProgress, [0, 1], ["25px", "-25px"]);
-  const card2Y = useTransform(scrollYProgress, [0, 1], ["0px", "0px"]);
-  const card3Y = useTransform(scrollYProgress, [0, 1], ["-25px", "25px"]);
 
   return (
     <section
@@ -26,14 +15,11 @@ export default function About() {
     >
       <div className="space-y-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Section Heading with Parallax */}
+          {/* Section Heading */}
           <div className="lg:col-span-5 space-y-4">
-            <motion.h2
-              style={{ y: headingY }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-geist-thin uppercase tracking-tight text-black leading-tight will-change-transform"
-            >
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-geist-thin uppercase tracking-tight text-black leading-tight">
               WHAT IS<br />ORIGINS?
-            </motion.h2>
+            </h2>
           </div>
 
           {/* Narrative highlighting OUANTUM program */}
@@ -66,22 +52,19 @@ export default function About() {
               </p>
             </div>
 
-            {/* Large Core Statement with smooth Parallax */}
-            <motion.div style={{ y: statementY }} className="py-6 will-change-transform">
+            {/* Large Core Statement */}
+            <div className="py-6">
               <blockquote className="text-3xl sm:text-4xl md:text-5xl font-geist-light uppercase tracking-tight text-black leading-[1.15]">
                 Start with the problem.<br />
                 Build the solution.
               </blockquote>
-            </motion.div>
+            </div>
           </div>
         </div>
 
-        {/* 3 Pillars with Staggered Parallax Wave and Dither BG */}
+        {/* 3 Pillars with Dither BG */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <motion.div
-            style={{ y: card1Y }}
-            className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform border border-neutral-100"
-          >
+          <div className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 border border-neutral-100">
             <DitherBg opacity={0.25} />
             <div className="relative z-10 space-y-4">
               <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
@@ -91,12 +74,9 @@ export default function About() {
                 Grounded in tangible realities and lived human friction, not synthetic hype.
               </p>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            style={{ y: card2Y }}
-            className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform border border-neutral-100"
-          >
+          <div className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 border border-neutral-100">
             <DitherBg opacity={0.25} />
             <div className="relative z-10 space-y-4">
               <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
@@ -106,12 +86,9 @@ export default function About() {
                 Functional architectures, resilient software, hardware systems, and defensible logic.
               </p>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            style={{ y: card3Y }}
-            className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform border border-neutral-100"
-          >
+          <div className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 border border-neutral-100">
             <DitherBg opacity={0.25} />
             <div className="relative z-10 space-y-4">
               <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
@@ -121,7 +98,7 @@ export default function About() {
                 Measurable value delivered to communities, ecosystems, and public infrastructure through the OUANTUM innovation network.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Action Link to Philosophy */}

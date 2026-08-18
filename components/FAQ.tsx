@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
 import DitherBg from "@/components/DitherBg";
 
 interface FAQItem {
@@ -57,14 +56,24 @@ const faqs: FAQItem[] = [
       "You can build across any of the 10 core domains (Climate, Infrastructure, Health, Education, Accessibility, Public Systems, Safety, Humanity, Technology, Open Innovation). The only requirement is that it tackles a real problem and demonstrates functional execution.",
   },
   {
-    question: "What happens after registration?",
+    question: "Where does the sprint take place?",
     answer:
-      "Upon submitting registration, you will receive a unique Registration ID (e.g. ORI-XXXXXX). You will receive technical briefings, sprint guidelines, and workspace invitations prior to the opening kickoff.",
+      "ORIGINS 2026 runs simultaneously with live physical hubs in Bengaluru and hybrid online coordination for selected distributed teams worldwide.",
   },
   {
-    question: "How does judging work?",
+    question: "Can I participate if I don't have a team?",
     answer:
-      "Evaluation is conducted by our OUANTUM jury across five strict weighted dimensions: Originality (25%), Impact (25%), Engineering Rigor (20%), Feasibility (15%), and Presentation Clarity (15%). Codebases and prototypes are inspected directly.",
+      "Yes. You can register as a Solo Architect. We also host a dedicated team-formation channel during the kickoff phase for solo participants seeking collaborators.",
+  },
+  {
+    question: "Will mentors be available during the sprint?",
+    answer:
+      "Yes. OUANTUM research staff, system architects, and industry experts provide scheduled checkpoints and on-demand guidance throughout the full 24-hour duration.",
+  },
+  {
+    question: "Who retains ownership of the intellectual property?",
+    answer:
+      "You retain 100% ownership of everything you build during ORIGINS 2026. Neither OUANTUM nor its affiliates claim any rights to your code, patents, or assets.",
   },
   {
     question: "What do I need to submit?",
@@ -76,15 +85,6 @@ const faqs: FAQItem[] = [
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const col1Y = useTransform(scrollYProgress, [0, 1], ["20px", "-20px"]);
-  const col2Y = useTransform(scrollYProgress, [0, 1], ["-15px", "15px"]);
-  const bannerY = useTransform(scrollYProgress, [0, 1], ["25px", "-15px"]);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -98,11 +98,11 @@ export default function FAQ() {
       <div className="space-y-16 sm:space-y-24">
         {/* Massive Hero Section Title with Reduced Mobile Size */}
         <div className="space-y-4 sm:space-y-8">
-          <motion.div style={{ y: titleY }} className="select-none will-change-transform">
+          <div className="select-none">
             <h1 className="text-5xl sm:text-7xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.9] sm:leading-[0.82] font-geist-thin tracking-[-0.04em] sm:tracking-[-0.07em] text-black uppercase break-words">
               FAQ
             </h1>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-2 sm:pt-4">
             <div className="lg:col-span-6 space-y-3 sm:space-y-4">
@@ -122,13 +122,8 @@ export default function FAQ() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
-            const isEven = index % 2 === 0;
             return (
-              <motion.div
-                key={index}
-                style={{ y: isEven ? col1Y : col2Y }}
-                className="will-change-transform"
-              >
+              <div key={index}>
                 <div
                   onClick={() => toggleFAQ(index)}
                   className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between cursor-pointer h-full border border-neutral-100"
@@ -157,16 +152,13 @@ export default function FAQ() {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
         {/* Navigation Banner */}
-        <motion.div
-          style={{ y: bannerY }}
-          className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
-        >
+        <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
           <DitherBg opacity={0.25} />
           <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
@@ -191,7 +183,7 @@ export default function FAQ() {
               REGISTER →
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

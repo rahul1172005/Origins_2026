@@ -2,20 +2,10 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
 import DitherBg from "@/components/DitherBg";
 
 export default function Prizes() {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const col1Y = useTransform(scrollYProgress, [0, 1], ["20px", "-20px"]);
-  const col2Y = useTransform(scrollYProgress, [0, 1], ["-15px", "15px"]);
-  const bannerY = useTransform(scrollYProgress, [0, 1], ["25px", "-15px"]);
 
   const specialRecognitions = [
     {
@@ -48,11 +38,11 @@ export default function Prizes() {
       <div className="space-y-16 sm:space-y-24">
         {/* Massive Hero Section Title with Reduced Mobile Size */}
         <div className="space-y-4 sm:space-y-8">
-          <motion.div style={{ y: titleY }} className="select-none will-change-transform">
+          <div className="select-none">
             <h1 className="text-5xl sm:text-7xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.9] sm:leading-[0.82] font-geist-thin tracking-[-0.04em] sm:tracking-[-0.07em] text-black uppercase break-words">
               PRIZES
             </h1>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-2 sm:pt-4">
             <div className="lg:col-span-6 space-y-3 sm:space-y-4">
@@ -71,64 +61,60 @@ export default function Prizes() {
         {/* Grand Prize & Runner Up Cards with Dither BG */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Grand Prize */}
-          <motion.div style={{ y: col1Y }} className="will-change-transform">
-            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
-              <DitherBg opacity={0.25} />
-              <div className="relative z-10 space-y-4 sm:space-y-6">
-                <div className="flex items-baseline justify-between">
-                  <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
-                    OUANTUM GRANT
-                  </span>
-                  <span className="text-xs uppercase tracking-widest text-neutral-500 font-inter font-medium">
-                    PRIMARY HONOR
-                  </span>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="text-[12vw] sm:text-[10vw] lg:text-[100px] leading-none font-geist-thin text-black tracking-tight">
-                    ₹1,00,000
-                  </div>
-                  <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                    GRAND PRIZE
-                  </h3>
-                </div>
+          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-4 sm:space-y-6">
+              <div className="flex items-baseline justify-between">
+                <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
+                  OUANTUM GRANT
+                </span>
+                <span className="text-xs uppercase tracking-widest text-neutral-500 font-inter font-medium">
+                  PRIMARY HONOR
+                </span>
               </div>
 
-              <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
-                For the solution with the strongest combination of originality, engineering rigor, and measurable real-world impact. Includes direct OUANTUM technical incubation and advisory deployment.
-              </p>
+              <div className="space-y-2">
+                <div className="text-[12vw] sm:text-[10vw] lg:text-[100px] leading-none font-geist-thin text-black tracking-tight">
+                  ₹1,00,000
+                </div>
+                <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                  GRAND PRIZE
+                </h3>
+              </div>
             </div>
-          </motion.div>
+
+            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+              For the solution with the strongest combination of originality, engineering rigor, and measurable real-world impact. Includes direct OUANTUM technical incubation and advisory deployment.
+            </p>
+          </div>
 
           {/* Runner Up */}
-          <motion.div style={{ y: col2Y }} className="will-change-transform">
-            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
-              <DitherBg opacity={0.25} />
-              <div className="relative z-10 space-y-4 sm:space-y-6">
-                <div className="flex items-baseline justify-between">
-                  <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
-                    OUANTUM GRANT
-                  </span>
-                  <span className="text-xs uppercase tracking-widest text-neutral-500 font-inter font-medium">
-                    SECONDARY HONOR
-                  </span>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="text-[11vw] sm:text-[8vw] lg:text-[80px] leading-none font-geist-thin text-black tracking-tight">
-                    ₹50,000
-                  </div>
-                  <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                    RUNNER UP
-                  </h3>
-                </div>
+          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-4 sm:space-y-6">
+              <div className="flex items-baseline justify-between">
+                <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
+                  OUANTUM GRANT
+                </span>
+                <span className="text-xs uppercase tracking-widest text-neutral-500 font-inter font-medium">
+                  SECONDARY HONOR
+                </span>
               </div>
 
-              <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
-                For the team exhibiting exceptional technical execution, deep domain empathy, and immediate pilot feasibility within the OUANTUM ecosystem.
-              </p>
+              <div className="space-y-2">
+                <div className="text-[11vw] sm:text-[8vw] lg:text-[80px] leading-none font-geist-thin text-black tracking-tight">
+                  ₹50,000
+                </div>
+                <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                  RUNNER UP
+                </h3>
+              </div>
             </div>
-          </motion.div>
+
+            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+              For the team exhibiting exceptional technical execution, deep domain empathy, and immediate pilot feasibility within the OUANTUM ecosystem.
+            </p>
+          </div>
         </div>
 
         {/* Special Recognition Categories with Dither BG */}
@@ -170,10 +156,7 @@ export default function Prizes() {
         </div>
 
         {/* Navigation Banner */}
-        <motion.div
-          style={{ y: bannerY }}
-          className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
-        >
+        <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
           <DitherBg opacity={0.25} />
           <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
@@ -198,7 +181,7 @@ export default function Prizes() {
               FAQ →
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

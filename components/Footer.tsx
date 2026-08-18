@@ -2,18 +2,10 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Footer() {
   const [modalContent, setModalContent] = useState<{ title: string; content: string } | null>(null);
   const footerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: footerRef,
-    offset: ["start end", "end end"],
-  });
-
-  const originsY = useTransform(scrollYProgress, [0, 1], ["30px", "0px"]);
-  const ctaY = useTransform(scrollYProgress, [0, 1], ["20px", "0px"]);
 
   const openModal = (title: string, content: string) => {
     setModalContent({ title, content });
@@ -26,19 +18,13 @@ export default function Footer() {
     >
       {/* 1. MASSIVE ARCHITECTURAL "ORIGINS" AT THE VERY TOP OF THE FOOTER */}
       <div className="w-full select-none text-center pt-2 sm:pt-4 pb-2">
-        <motion.div
-          style={{ y: originsY }}
-          className="text-6xl sm:text-[21vw] lg:text-[22vw] leading-none font-geist-thin tracking-[-0.05em] sm:tracking-[-0.06em] text-black uppercase w-full block will-change-transform break-words"
-        >
+        <div className="text-6xl sm:text-[21vw] lg:text-[22vw] leading-none font-geist-thin tracking-[-0.05em] sm:tracking-[-0.06em] text-black uppercase w-full block break-words">
           ORIGINS
-        </motion.div>
+        </div>
       </div>
 
       {/* 2. HEROIC CLOSING QUESTION & CTA BLOCK */}
-      <motion.div
-        style={{ y: ctaY }}
-        className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-end pt-2 sm:pt-4 will-change-transform"
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-end pt-2 sm:pt-4">
         <div className="lg:col-span-8 space-y-2 sm:space-y-4">
           <h2 className="text-2xl sm:text-6xl md:text-7xl lg:text-8xl font-geist-thin uppercase tracking-tight text-black leading-none">
             EVERYTHING<br />
@@ -61,7 +47,7 @@ export default function Footer() {
             REGISTER NOW
           </Link>
         </div>
-      </motion.div>
+      </div>
 
       {/* 3. CLEAN TYPOGRAPHICAL FOOTER COLUMNS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 pt-4 sm:pt-8">

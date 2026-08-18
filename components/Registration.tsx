@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import DitherBg from "@/components/DitherBg";
 
 interface RegistrationData {
@@ -36,19 +35,13 @@ const domains = [
 ];
 
 export default function Registration() {
-  const [track, setTrack] = useState<"INDIVIDUAL" | "TEAM">("TEAM");
+  const [track, setTrack] = useState<"INDIVIDUAL" | "TEAM">("INDIVIDUAL");
   const [lookupMode, setLookupMode] = useState<boolean>(false);
   const [lookupInput, setLookupInput] = useState<string>("");
   const [lookupResult, setLookupResult] = useState<RegistrationData | null>(null);
   const [lookupError, setLookupError] = useState<string>("");
 
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -212,11 +205,11 @@ export default function Registration() {
       <div className="space-y-12 sm:space-y-16">
         {/* Massive Hero Section Title with Reduced Mobile Size */}
         <div className="space-y-4 sm:space-y-8">
-          <motion.div style={{ y: titleY }} className="select-none will-change-transform">
+          <div className="select-none">
             <h1 className="text-5xl sm:text-7xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.9] sm:leading-[0.82] font-geist-thin tracking-[-0.04em] sm:tracking-[-0.07em] text-black uppercase break-words">
               REGISTER
             </h1>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-2 sm:pt-4">
             <div className="lg:col-span-6 space-y-3 sm:space-y-4">

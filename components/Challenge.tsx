@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
 import DitherBg from "@/components/DitherBg";
 
 interface ChallengeDomain {
@@ -129,15 +128,6 @@ const domains: ChallengeDomain[] = [
 export default function Challenge() {
   const [activeDomain, setActiveDomain] = useState<string | null>(null);
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const col1Y = useTransform(scrollYProgress, [0, 1], ["20px", "-20px"]);
-  const col2Y = useTransform(scrollYProgress, [0, 1], ["-20px", "20px"]);
-  const bannerY = useTransform(scrollYProgress, [0, 1], ["25px", "-15px"]);
 
   return (
     <section
@@ -147,11 +137,11 @@ export default function Challenge() {
       <div className="space-y-16 sm:space-y-24">
         {/* Massive Hero Section Title with Reduced Mobile Size */}
         <div className="space-y-4 sm:space-y-8">
-          <motion.div style={{ y: titleY }} className="select-none will-change-transform">
+          <div className="select-none">
             <h1 className="text-5xl sm:text-7xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.9] sm:leading-[0.82] font-geist-thin tracking-[-0.04em] sm:tracking-[-0.07em] text-black uppercase break-words">
               CHALLENGES
             </h1>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-2 sm:pt-4">
             <div className="lg:col-span-5 space-y-3 sm:space-y-4">
@@ -185,16 +175,11 @@ export default function Challenge() {
 
         {/* 10 Challenge Domains: Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {domains.map((domain, index) => {
+          {domains.map((domain) => {
             const isSelected = activeDomain === domain.id;
-            const isEven = index % 2 === 0;
 
             return (
-              <motion.div
-                key={domain.id}
-                style={{ y: isEven ? col1Y : col2Y }}
-                className="will-change-transform"
-              >
+              <div key={domain.id}>
                 <div
                   onClick={() => setActiveDomain(isSelected ? null : domain.id)}
                   className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between cursor-pointer h-full border border-neutral-100"
@@ -226,7 +211,7 @@ export default function Challenge() {
 
                   {/* Expanded Problem Archetypes */}
                   {isSelected && (
-                    <div className="relative z-10 pt-4 space-y-3 animate-fadeIn">
+                    <div className="relative z-10 pt-4 space-y-3">
                       <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter block">
                         EXEMPLARY PROBLEM ARCHETYPES
                       </span>
@@ -244,16 +229,13 @@ export default function Challenge() {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
         {/* Navigation Banner */}
-        <motion.div
-          style={{ y: bannerY }}
-          className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
-        >
+        <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
           <DitherBg opacity={0.25} />
           <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
@@ -278,7 +260,7 @@ export default function Challenge() {
               PROCESS →
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
