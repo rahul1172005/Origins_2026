@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
+import OriginsLoader from "@/components/OriginsLoader";
 
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
@@ -73,6 +74,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white text-black font-inter selection:bg-black selection:text-white">
+      {/* Intro Stroke Formation Loader */}
+      <OriginsLoader autoDismiss={true} duration={3.4} />
+
       {/* Sticky Top Navigation */}
       <Navbar />
 

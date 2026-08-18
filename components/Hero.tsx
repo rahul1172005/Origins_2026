@@ -49,7 +49,9 @@ export default function Hero() {
             src={mascotImg}
             alt="OUANTUM ORIGINS 2026 Builder Mascot"
             priority
-            className="w-full h-auto object-contain"
+            sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, (max-width: 1024px) 240px, 380px"
+            quality={90}
+            className="w-full h-auto object-contain will-change-transform"
           />
         </div>
       </div>
