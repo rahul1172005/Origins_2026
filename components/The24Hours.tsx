@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import DitherBg from "@/components/DitherBg";
 
 interface SchedulePhase {
   time: string;
@@ -106,8 +107,9 @@ export default function The24Hours() {
                 style={{ y: isEven ? col1Y : col2Y }}
                 className="will-change-transform"
               >
-                <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full">
-                  <div className="space-y-4 sm:space-y-6">
+                <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
+                  <DitherBg opacity={0.25} />
+                  <div className="relative z-10 space-y-4 sm:space-y-6">
                     <div className="flex items-baseline justify-between">
                       <span className="text-xs sm:text-sm font-geist-thin text-neutral-400 font-mono">
                         {p.time}
@@ -127,7 +129,7 @@ export default function The24Hours() {
                     </div>
                   </div>
 
-                  <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                  <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
                     {p.detail}
                   </p>
                 </div>
@@ -139,18 +141,19 @@ export default function The24Hours() {
         {/* Navigation Banner */}
         <motion.div
           style={{ y: bannerY }}
-          className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform"
+          className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
         >
-          <div className="space-y-2 text-left">
+          <DitherBg opacity={0.25} />
+          <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-              EXPLORE JUDGING & EVALUATION
+              MEET THE EVALUATION JURY & CRITERIA
             </h3>
             <p className="text-xs sm:text-sm text-neutral-600 font-inter font-light">
-              5 weighted evaluation dimensions and technical jury inspection criteria.
+              Evaluated with complete algorithmic and technical transparency.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/process"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"

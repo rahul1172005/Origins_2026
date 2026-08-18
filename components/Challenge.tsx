@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import DitherBg from "@/components/DitherBg";
 
 interface ChallengeDomain {
   id: string;
@@ -187,6 +188,7 @@ export default function Challenge() {
           {domains.map((domain, index) => {
             const isSelected = activeDomain === domain.id;
             const isEven = index % 2 === 0;
+
             return (
               <motion.div
                 key={domain.id}
@@ -195,9 +197,10 @@ export default function Challenge() {
               >
                 <div
                   onClick={() => setActiveDomain(isSelected ? null : domain.id)}
-                  className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between cursor-pointer h-full"
+                  className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between cursor-pointer h-full border border-neutral-100"
                 >
-                  <div className="space-y-4 sm:space-y-6">
+                  <DitherBg opacity={0.25} />
+                  <div className="relative z-10 space-y-4 sm:space-y-6">
                     <div className="flex items-baseline justify-between">
                       <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                         FOCUS DOMAIN
@@ -217,13 +220,13 @@ export default function Challenge() {
                     </div>
                   </div>
 
-                  <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                  <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
                     {domain.scope}
                   </p>
 
                   {/* Expanded Problem Archetypes */}
                   {isSelected && (
-                    <div className="pt-4 space-y-3 animate-fadeIn">
+                    <div className="relative z-10 pt-4 space-y-3 animate-fadeIn">
                       <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter block">
                         EXEMPLARY PROBLEM ARCHETYPES
                       </span>
@@ -249,9 +252,10 @@ export default function Challenge() {
         {/* Navigation Banner */}
         <motion.div
           style={{ y: bannerY }}
-          className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform"
+          className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
         >
-          <div className="space-y-2 text-left">
+          <DitherBg opacity={0.25} />
+          <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
               READY TO EXPLORE THE SPRINT PROCESS?
             </h3>
@@ -260,7 +264,7 @@ export default function Challenge() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/philosophy"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"

@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import DitherBg from "@/components/DitherBg";
 
 export default function HowItWorks() {
   const containerRef = useRef<HTMLElement>(null);
@@ -83,7 +84,7 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        {/* 5 Core Steps as Cards with Parallax Motion */}
+        {/* 5 Core Steps as Cards with Parallax Motion and Dither BG */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {steps.map((s, idx) => {
             const isEven = idx % 2 === 0;
@@ -93,8 +94,9 @@ export default function HowItWorks() {
                 style={{ y: isEven ? col1Y : col2Y }}
                 className="will-change-transform"
               >
-                <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between h-full">
-                  <div className="space-y-2">
+                <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between h-full border border-neutral-100">
+                  <DitherBg opacity={0.25} />
+                  <div className="relative z-10 space-y-2">
                     <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                       {s.title}
                     </h3>
@@ -102,7 +104,7 @@ export default function HowItWorks() {
                       {s.headline}
                     </p>
                   </div>
-                  <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                  <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
                     {s.detail}
                   </p>
                 </div>
@@ -130,9 +132,10 @@ export default function HowItWorks() {
         {/* Navigation Banner */}
         <motion.div
           style={{ y: bannerY }}
-          className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform"
+          className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
         >
-          <div className="space-y-2 text-left">
+          <DitherBg opacity={0.25} />
+          <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
               CHECK THE 24-HOUR SPRINT SCHEDULE
             </h3>
@@ -141,7 +144,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/challenge"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"

@@ -8,6 +8,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import OriginsLoader from "@/components/OriginsLoader";
+import DitherBg from "@/components/DitherBg";
 
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
@@ -120,9 +121,10 @@ export default function Home() {
                 >
                   <Link
                     href={m.href}
-                    className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between group cursor-pointer h-full"
+                    className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between group cursor-pointer h-full border border-neutral-100"
                   >
-                    <div className="space-y-4 sm:space-y-6">
+                    <DitherBg opacity={0.25} />
+                    <div className="relative z-10 space-y-4 sm:space-y-6">
                       <div className="flex items-baseline justify-between">
                         <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                           MODULE
@@ -142,7 +144,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                    <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
                       {m.detail}
                     </p>
                   </Link>
@@ -154,9 +156,10 @@ export default function Home() {
           {/* Direct CTA Bar */}
           <motion.div
             style={{ y: bannerY }}
-            className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform"
+            className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
           >
-            <div className="space-y-2 text-left">
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-2 text-left">
               <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                 READY TO ENTER OUANTUM ORIGINS 2026?
               </h3>
@@ -167,7 +170,7 @@ export default function Home() {
 
             <Link
               href="/register"
-              className="w-full md:w-auto px-8 sm:px-10 py-4 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block shrink-0 text-center"
+              className="relative z-10 w-full md:w-auto px-8 sm:px-10 py-4 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block shrink-0 text-center"
             >
               REGISTER NOW →
             </Link>

@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import DitherBg from "@/components/DitherBg";
 
 export default function Philosophy() {
   const containerRef = useRef<HTMLElement>(null);
@@ -75,14 +76,15 @@ export default function Philosophy() {
           </div>
         </div>
 
-        {/* 3 Large Editorial Columns with Mobile Padding */}
+        {/* 3 Large Editorial Columns with Mobile Padding and Dither BG */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Card 01 */}
           <motion.div
             style={{ y: card1Y }}
-            className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between will-change-transform"
+            className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between will-change-transform border border-neutral-100"
           >
-            <div className="space-y-3 sm:space-y-4">
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-3 sm:space-y-4">
               <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                 NO SAAS CLONES
               </h3>
@@ -90,7 +92,7 @@ export default function Philosophy() {
                 We are not looking for another version of something that already exists.
               </p>
             </div>
-            <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
               No repackaged CRMs, generic wrappers, or superficial UI redesigns. We prioritize fresh, defensible architectural approaches.
             </p>
           </motion.div>
@@ -98,9 +100,10 @@ export default function Philosophy() {
           {/* Card 02 */}
           <motion.div
             style={{ y: card2Y }}
-            className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between will-change-transform"
+            className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between will-change-transform border border-neutral-100"
           >
-            <div className="space-y-3 sm:space-y-4">
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-3 sm:space-y-4">
               <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                 NO EMPTY PITCHES
               </h3>
@@ -108,7 +111,7 @@ export default function Philosophy() {
                 A polished presentation cannot replace a meaningful solution.
               </p>
             </div>
-            <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
               We look directly at the codebase, the technical logic, the hardware schematics, and the structural integrity of your build.
             </p>
           </motion.div>
@@ -116,9 +119,10 @@ export default function Philosophy() {
           {/* Card 03 */}
           <motion.div
             style={{ y: card3Y }}
-            className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between will-change-transform"
+            className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between will-change-transform border border-neutral-100"
           >
-            <div className="space-y-3 sm:space-y-4">
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-3 sm:space-y-4">
               <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                 NO ARTIFICIAL PROBLEMS
               </h3>
@@ -126,7 +130,7 @@ export default function Philosophy() {
                 Build for problems that actually matter.
               </p>
             </div>
-            <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
               Problems people experience daily. Problems worth solving with deep intellect, physical empathy, and engineering craft.
             </p>
           </motion.div>
@@ -147,9 +151,10 @@ export default function Philosophy() {
                 <motion.div
                   key={index}
                   style={{ y: isEven ? criteriaCol1Y : criteriaCol2Y }}
-                  className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between will-change-transform"
+                  className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between will-change-transform border border-neutral-100"
                 >
-                  <div className="space-y-2">
+                  <DitherBg opacity={0.25} />
+                  <div className="relative z-10 space-y-2">
                     <h4 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                       {item.title}
                     </h4>
@@ -158,7 +163,7 @@ export default function Philosophy() {
                     </p>
                   </div>
 
-                  <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                  <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
                     {item.detail}
                   </p>
                 </motion.div>
@@ -170,9 +175,10 @@ export default function Philosophy() {
         {/* Navigation Banner */}
         <motion.div
           style={{ y: bannerY }}
-          className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform"
+          className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
         >
-          <div className="space-y-2 text-left">
+          <DitherBg opacity={0.25} />
+          <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
               EXPLORE THE 10 FOCUS DOMAINS
             </h3>
@@ -181,7 +187,7 @@ export default function Philosophy() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"

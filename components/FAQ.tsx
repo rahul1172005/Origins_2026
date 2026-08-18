@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import DitherBg from "@/components/DitherBg";
 
 interface FAQItem {
   question: string;
@@ -117,7 +118,7 @@ export default function FAQ() {
           </div>
         </div>
 
-        {/* 12 FAQ Cards in Responsive Grid */}
+        {/* 12 FAQ Cards in Responsive Grid with Dither BG */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
@@ -130,32 +131,31 @@ export default function FAQ() {
               >
                 <div
                   onClick={() => toggleFAQ(index)}
-                  className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between cursor-pointer h-full"
+                  className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between cursor-pointer h-full border border-neutral-100"
                 >
-                  <div className="space-y-4 sm:space-y-6">
+                  <DitherBg opacity={0.25} />
+                  <div className="relative z-10 space-y-4 sm:space-y-6">
                     <div className="flex items-baseline justify-between">
                       <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                         QUESTION
                       </span>
                       <span className="text-xs uppercase tracking-widest text-neutral-500 font-inter font-medium">
-                        {isOpen ? "COLLAPSE" : "READ ANSWER"}
+                        {isOpen ? "CLOSE" : "EXPAND"}
                       </span>
                     </div>
 
-                    <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                    <h3 className="text-lg sm:text-2xl font-geist-light uppercase tracking-tight text-black">
                       {faq.question}
                     </h3>
                   </div>
 
-                  <div className="pt-1 sm:pt-2">
-                    <p
-                      className={`text-xs sm:text-sm text-neutral-700 font-inter font-light leading-relaxed ${
-                        isOpen ? "block animate-fadeIn" : "line-clamp-2 text-neutral-500"
-                      }`}
-                    >
-                      {faq.answer}
-                    </p>
-                  </div>
+                  {isOpen && (
+                    <div className="relative z-10 pt-2 animate-fadeIn">
+                      <p className="text-xs sm:text-sm text-neutral-600 font-inter font-light leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             );
@@ -165,18 +165,19 @@ export default function FAQ() {
         {/* Navigation Banner */}
         <motion.div
           style={{ y: bannerY }}
-          className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform"
+          className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 will-change-transform border border-neutral-100"
         >
-          <div className="space-y-2 text-left">
+          <DitherBg opacity={0.25} />
+          <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-              READY TO REGISTER FOR ORIGINS 2026?
+              READY TO BUILD WHAT SHOULD EXIST?
             </h3>
             <p className="text-xs sm:text-sm text-neutral-600 font-inter font-light">
-              Individual and team registration is open globally under the OUANTUM program (<a href="https://www.ouantum.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">www.ouantum.com</a>).
+              Submit your team parameters and secure your entry into ORIGINS 2026.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/prizes"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"

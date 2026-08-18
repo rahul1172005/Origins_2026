@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import DitherBg from "@/components/DitherBg";
 
 interface Mentor {
   name: string;
@@ -79,14 +80,15 @@ export default function Mentors() {
           </div>
         </div>
 
-        {/* Profile Cards */}
+        {/* Profile Cards with Dither BG */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {mentors.map((m, idx) => (
             <div
               key={idx}
-              className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between"
+              className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between border border-neutral-100"
             >
-              <div className="space-y-4 sm:space-y-6">
+              <DitherBg opacity={0.25} />
+              <div className="relative z-10 space-y-4 sm:space-y-6">
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                     JURY & MENTOR
@@ -106,7 +108,7 @@ export default function Mentors() {
                 </div>
               </div>
 
-              <div className="space-y-2 pt-2">
+              <div className="relative z-10 space-y-2 pt-2">
                 <span className="text-xs font-medium text-black uppercase tracking-wider block">
                   FOCUS: {m.domain}
                 </span>

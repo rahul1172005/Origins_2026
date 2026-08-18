@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import DitherBg from "@/components/DitherBg";
 
 export default function WhatToSubmit() {
   const deliverables = [
@@ -53,14 +54,15 @@ export default function WhatToSubmit() {
           </div>
         </div>
 
-        {/* 6 Grid Modules */}
+        {/* 6 Grid Modules with Dither BG */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {deliverables.map((item, idx) => (
             <div
               key={idx}
-              className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between"
+              className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100"
             >
-              <div className="space-y-2">
+              <DitherBg opacity={0.25} />
+              <div className="relative z-10 space-y-2">
                 <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                   {item.title}
                 </h3>
@@ -68,7 +70,7 @@ export default function WhatToSubmit() {
                   {item.headline}
                 </p>
               </div>
-              <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+              <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
                 {item.detail}
               </p>
             </div>

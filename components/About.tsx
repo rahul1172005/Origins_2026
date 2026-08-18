@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import DitherBg from "@/components/DitherBg";
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
@@ -75,42 +76,51 @@ export default function About() {
           </div>
         </div>
 
-        {/* 3 Pillars with Staggered Parallax Wave */}
+        {/* 3 Pillars with Staggered Parallax Wave and Dither BG */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           <motion.div
             style={{ y: card1Y }}
-            className="p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform"
+            className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform border border-neutral-100"
           >
-            <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
-              REAL PROBLEMS
-            </h3>
-            <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
-              Grounded in tangible realities and lived human friction, not synthetic hype.
-            </p>
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-4">
+              <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
+                REAL PROBLEMS
+              </h3>
+              <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
+                Grounded in tangible realities and lived human friction, not synthetic hype.
+              </p>
+            </div>
           </motion.div>
 
           <motion.div
             style={{ y: card2Y }}
-            className="p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform"
+            className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform border border-neutral-100"
           >
-            <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
-              REAL ENGINEERING
-            </h3>
-            <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
-              Functional architectures, resilient software, hardware systems, and defensible logic.
-            </p>
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-4">
+              <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
+                REAL ENGINEERING
+              </h3>
+              <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
+                Functional architectures, resilient software, hardware systems, and defensible logic.
+              </p>
+            </div>
           </motion.div>
 
           <motion.div
             style={{ y: card3Y }}
-            className="p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform"
+            className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 will-change-transform border border-neutral-100"
           >
-            <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
-              REAL IMPACT
-            </h3>
-            <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
-              Measurable value delivered to communities, ecosystems, and public infrastructure through the OUANTUM innovation network.
-            </p>
+            <DitherBg opacity={0.25} />
+            <div className="relative z-10 space-y-4">
+              <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
+                REAL IMPACT
+              </h3>
+              <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
+                Measurable value delivered to communities, ecosystems, and public infrastructure through the OUANTUM innovation network.
+              </p>
+            </div>
           </motion.div>
         </div>
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import DitherBg from "@/components/DitherBg";
 
 interface RegistrationData {
   id: string;
@@ -507,253 +508,265 @@ export default function Registration() {
             </div>
 
             {/* YOUR DETAILS */}
-            <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6">
-              <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                YOUR DETAILS
-              </h3>
+            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
+              <DitherBg opacity={0.2} />
+              <div className="relative z-10 space-y-6">
+                <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                  YOUR DETAILS
+                </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <div className="space-y-1 sm:col-span-2">
-                  <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                    FULL NAME *
-                  </label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    placeholder="Ada Lovelace"
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                  />
-                  {formErrors.fullName && (
-                    <p className="text-xs text-black font-inter pt-1">{formErrors.fullName}</p>
-                  )}
-                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-1 sm:col-span-2">
+                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                      FULL NAME *
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      placeholder="Ada Lovelace"
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                    />
+                    {formErrors.fullName && (
+                      <p className="text-xs text-black font-inter pt-1">{formErrors.fullName}</p>
+                    )}
+                  </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                    EMAIL ADDRESS *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="ada@domain.org"
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                  />
-                  {formErrors.email && (
-                    <p className="text-xs text-black font-inter pt-1">{formErrors.email}</p>
-                  )}
-                </div>
+                  <div className="space-y-1">
+                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                      EMAIL ADDRESS *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="ada@domain.org"
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                    />
+                    {formErrors.email && (
+                      <p className="text-xs text-black font-inter pt-1">{formErrors.email}</p>
+                    )}
+                  </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                    PHONE NUMBER *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+1 (555) 000-0000"
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                  />
-                  {formErrors.phone && (
-                    <p className="text-xs text-black font-inter pt-1">{formErrors.phone}</p>
-                  )}
-                </div>
+                  <div className="space-y-1">
+                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                      PHONE NUMBER *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+1 (555) 000-0000"
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                    />
+                    {formErrors.phone && (
+                      <p className="text-xs text-black font-inter pt-1">{formErrors.phone}</p>
+                    )}
+                  </div>
 
-                <div className="space-y-1 sm:col-span-2">
-                  <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                    GITHUB / PORTFOLIO LINK (OPTIONAL)
-                  </label>
-                  <input
-                    type="url"
-                    name="github"
-                    value={formData.github}
-                    onChange={handleChange}
-                    placeholder="https://github.com/username"
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                  />
+                  <div className="space-y-1 sm:col-span-2">
+                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                      GITHUB / PORTFOLIO LINK (OPTIONAL)
+                    </label>
+                    <input
+                      type="url"
+                      name="github"
+                      value={formData.github}
+                      onChange={handleChange}
+                      placeholder="https://github.com/username"
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* BACKGROUND */}
-            <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6">
-              <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                BACKGROUND
-              </h3>
+            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
+              <DitherBg opacity={0.2} />
+              <div className="relative z-10 space-y-6">
+                <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                  BACKGROUND
+                </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <div className="space-y-1 sm:col-span-2">
-                  <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                    COLLEGE / ORGANIZATION *
-                  </label>
-                  <input
-                    type="text"
-                    name="organization"
-                    value={formData.organization}
-                    onChange={handleChange}
-                    placeholder="Institution or Company name"
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                  />
-                  {formErrors.organization && (
-                    <p className="text-xs text-black font-inter pt-1">{formErrors.organization}</p>
-                  )}
-                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-1 sm:col-span-2">
+                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                      COLLEGE / ORGANIZATION *
+                    </label>
+                    <input
+                      type="text"
+                      name="organization"
+                      value={formData.organization}
+                      onChange={handleChange}
+                      placeholder="Institution or Company name"
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                    />
+                    {formErrors.organization && (
+                      <p className="text-xs text-black font-inter pt-1">{formErrors.organization}</p>
+                    )}
+                  </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                    COURSE / PROFESSION
-                  </label>
-                  <input
-                    type="text"
-                    name="roleOrProfession"
-                    value={formData.roleOrProfession}
-                    onChange={handleChange}
-                    placeholder="Systems Engineering / Researcher"
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                  />
-                </div>
+                  <div className="space-y-1">
+                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                      COURSE / PROFESSION
+                    </label>
+                    <input
+                      type="text"
+                      name="roleOrProfession"
+                      value={formData.roleOrProfession}
+                      onChange={handleChange}
+                      placeholder="Systems Engineering / Researcher"
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                    />
+                  </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                    CITY *
-                  </label>
-                  <input
-                    type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                    placeholder="Bengaluru / San Francisco / Berlin"
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                  />
-                  {formErrors.city && (
-                    <p className="text-xs text-black font-inter pt-1">{formErrors.city}</p>
-                  )}
+                  <div className="space-y-1">
+                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                      CITY *
+                    </label>
+                    <input
+                      type="text"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      placeholder="Bengaluru / San Francisco / Berlin"
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                    />
+                    {formErrors.city && (
+                      <p className="text-xs text-black font-inter pt-1">{formErrors.city}</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* YOUR BUILD */}
-            <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6">
-              <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                YOUR BUILD
-              </h3>
+            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
+              <DitherBg opacity={0.2} />
+              <div className="relative z-10 space-y-6">
+                <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                  YOUR BUILD
+                </h3>
 
-              <div className="space-y-4 sm:space-y-6">
-                {track === "TEAM" && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <div className="space-y-1">
-                      <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                        TEAM NAME *
-                      </label>
-                      <input
-                        type="text"
-                        name="teamName"
-                        value={formData.teamName}
-                        onChange={handleChange}
-                        placeholder="Project Vanguard"
-                        className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                      />
-                      {formErrors.teamName && (
-                        <p className="text-xs text-black font-inter pt-1">{formErrors.teamName}</p>
-                      )}
+                <div className="space-y-4 sm:space-y-6">
+                  {track === "TEAM" && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                      <div className="space-y-1">
+                        <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                          TEAM NAME *
+                        </label>
+                        <input
+                          type="text"
+                          name="teamName"
+                          value={formData.teamName}
+                          onChange={handleChange}
+                          placeholder="Project Vanguard"
+                          className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                        />
+                        {formErrors.teamName && (
+                          <p className="text-xs text-black font-inter pt-1">{formErrors.teamName}</p>
+                        )}
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                          CO-BUILDERS (NAMES & EMAILS)
+                        </label>
+                        <input
+                          type="text"
+                          name="teamMembers"
+                          value={formData.teamMembers}
+                          onChange={handleChange}
+                          placeholder="Member 2, Member 3, Member 4"
+                          className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
+                        />
+                      </div>
                     </div>
-
-                    <div className="space-y-1">
-                      <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                        CO-BUILDERS (NAMES & EMAILS)
-                      </label>
-                      <input
-                        type="text"
-                        name="teamMembers"
-                        value={formData.teamMembers}
-                        onChange={handleChange}
-                        placeholder="Member 2, Member 3, Member 4"
-                        className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                <div className="space-y-1">
-                  <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                    CHALLENGE DOMAIN *
-                  </label>
-                  <select
-                    name="domain"
-                    value={formData.domain}
-                    onChange={handleChange}
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black cursor-pointer"
-                  >
-                    {domains.map((d, i) => (
-                      <option key={i} value={d}>
-                        {d}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="space-y-1">
-                  <div className="flex justify-between items-baseline">
-                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
-                      PROBLEM YOU WANT TO SOLVE *
-                    </label>
-                    <span className="text-[10px] text-neutral-400 font-mono">
-                      {formData.problemStatement.length} chars
-                    </span>
-                  </div>
-                  <textarea
-                    name="problemStatement"
-                    rows={4}
-                    value={formData.problemStatement}
-                    onChange={handleChange}
-                    placeholder="Articulate the exact real-world bottleneck or structural challenge you plan to engineer a solution for during the 24 hours..."
-                    className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black resize-y"
-                  />
-                  {formErrors.problemStatement && (
-                    <p className="text-xs text-black font-inter pt-1">
-                      {formErrors.problemStatement}
-                    </p>
                   )}
+
+                  <div className="space-y-1">
+                    <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                      CHALLENGE DOMAIN *
+                    </label>
+                    <select
+                      name="domain"
+                      value={formData.domain}
+                      onChange={handleChange}
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black cursor-pointer"
+                    >
+                      {domains.map((d, i) => (
+                        <option key={i} value={d}>
+                          {d}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-baseline">
+                      <label className="text-xs uppercase tracking-widest text-neutral-500 font-inter block">
+                        PROBLEM YOU WANT TO SOLVE *
+                      </label>
+                      <span className="text-[10px] text-neutral-400 font-mono">
+                        {formData.problemStatement.length} chars
+                      </span>
+                    </div>
+                    <textarea
+                      name="problemStatement"
+                      rows={4}
+                      value={formData.problemStatement}
+                      onChange={handleChange}
+                      placeholder="Articulate the exact real-world bottleneck or structural challenge you plan to engineer a solution for during the 24 hours..."
+                      className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-2xl text-black font-inter text-sm outline-none focus:ring-1 focus:ring-black resize-y"
+                    />
+                    {formErrors.problemStatement && (
+                      <p className="text-xs text-black font-inter pt-1">
+                        {formErrors.problemStatement}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* CONFIRM & SUBMIT */}
-            <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6">
-              <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                CONFIRM
-              </h3>
+            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
+              <DitherBg opacity={0.2} />
+              <div className="relative z-10 space-y-6">
+                <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                  CONFIRM
+                </h3>
 
-              <div className="space-y-3">
-                <label className="flex items-start gap-3 sm:gap-4 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="agreedToRules"
-                    checked={formData.agreedToRules}
-                    onChange={handleChange}
-                    className="mt-1 w-4 h-4 accent-black cursor-pointer shrink-0"
-                  />
-                  <span className="text-xs sm:text-sm text-neutral-700 font-inter leading-relaxed">
-                    I agree to the OUANTUM ORIGINS 2026 rules: no SaaS clones, no empty pitch decks, and a commitment to build functional engineering aimed at authentic problems.
-                  </span>
-                </label>
-                {formErrors.agreedToRules && (
-                  <p className="text-xs text-black font-inter pt-1">{formErrors.agreedToRules}</p>
-                )}
-              </div>
+                <div className="space-y-3">
+                  <label className="flex items-start gap-3 sm:gap-4 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="agreedToRules"
+                      checked={formData.agreedToRules}
+                      onChange={handleChange}
+                      className="mt-1 w-4 h-4 accent-black cursor-pointer shrink-0"
+                    />
+                    <span className="text-xs sm:text-sm text-neutral-700 font-inter leading-relaxed">
+                      I agree to the OUANTUM ORIGINS 2026 rules: no SaaS clones, no empty pitch decks, and a commitment to build functional engineering aimed at authentic problems.
+                    </span>
+                  </label>
+                  {formErrors.agreedToRules && (
+                    <p className="text-xs text-black font-inter pt-1">{formErrors.agreedToRules}</p>
+                  )}
+                </div>
 
-              <div className="pt-2 sm:pt-4">
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer block text-center"
-                >
-                  SUBMIT REGISTRATION →
-                </button>
+                <div className="pt-2 sm:pt-4">
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer block text-center"
+                  >
+                    SUBMIT REGISTRATION →
+                  </button>
+                </div>
               </div>
             </div>
           </form>
