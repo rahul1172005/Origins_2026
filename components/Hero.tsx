@@ -3,26 +3,15 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
 import mascotImg from "@/public/images/1.png";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
 
   // Mascot Static Attributes: Scale, X-axis, Y-axis
   const mascotScale = 1.10;
   const mascotX = 0; // in px
   const mascotY = -10; // in px
-
-  // Multi-layered parallax transforms for typography
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "38%"]);
-  const titleScale = useTransform(scrollYProgress, [0, 1], [1, 0.96]);
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.15]);
-  const subtitleY = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
 
   const scrollToExplore = () => {
     const element = document.getElementById("overview");
@@ -59,23 +48,17 @@ export default function Hero() {
       {/* Hero Central Architectural Typography */}
       <div className="py-6 sm:py-12 md:py-16 space-y-8 sm:space-y-12 relative z-10">
         {/* Main Title Typography */}
-        <motion.div
-          style={{ y: titleY, scale: titleScale, opacity }}
-          className="select-none will-change-transform origin-left max-w-[70vw] lg:max-w-[65vw]"
-        >
+        <div className="select-none origin-left max-w-[70vw] lg:max-w-[65vw]">
           <h1 className="text-6xl sm:text-8xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.85] sm:leading-[0.82] font-geist-thin tracking-[-0.05em] sm:tracking-[-0.07em] text-black uppercase break-words">
             ORIGINS
           </h1>
           <h1 className="text-6xl sm:text-8xl md:text-[15vw] lg:text-[180px] xl:text-[230px] leading-[0.85] sm:leading-[0.82] font-geist-thin tracking-[-0.05em] sm:tracking-[-0.07em] text-black break-words">
             2026
           </h1>
-        </motion.div>
+        </div>
 
         {/* Subtitle & Actions */}
-        <motion.div
-          style={{ y: subtitleY }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-2 sm:pt-6 will-change-transform"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-2 sm:pt-6">
           <div className="lg:col-span-6 space-y-3 sm:space-y-4">
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-geist-light tracking-tight leading-[1.05] text-black uppercase">
               BUILD WHAT<br />SHOULD EXIST.
@@ -112,7 +95,7 @@ export default function Hero() {
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
