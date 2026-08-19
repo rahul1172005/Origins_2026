@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import DitherBg from "@/components/DitherBg";
 
 interface ChallengeDomain {
   id: string;
@@ -150,25 +149,10 @@ export default function Challenge() {
               </h2>
             </div>
 
-            <div className="lg:col-span-7 flex flex-col justify-between space-y-6 sm:space-y-8">
+            <div className="lg:col-span-7 flex flex-col justify-end">
               <p className="text-sm sm:text-lg lg:text-xl text-neutral-800 font-inter font-light leading-relaxed">
                 Take a real-world problem and turn it into something that shouldn&apos;t have remained unsolved. Supported by the OUANTUM innovation network.
               </p>
-
-              {/* Methodology Flow */}
-              <div className="pt-2">
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs uppercase tracking-widest font-inter text-black">
-                  <span className="px-4 sm:px-6 py-2 sm:py-3 bg-[#F5F5F5] rounded-full font-medium">FIND</span>
-                  <span className="text-neutral-400">↓</span>
-                  <span className="px-4 sm:px-6 py-2 sm:py-3 bg-[#F5F5F5] rounded-full font-medium">DEFINE</span>
-                  <span className="text-neutral-400">↓</span>
-                  <span className="px-4 sm:px-6 py-2 sm:py-3 bg-[#F5F5F5] rounded-full font-medium">DESIGN</span>
-                  <span className="text-neutral-400">↓</span>
-                  <span className="px-4 sm:px-6 py-2 sm:py-3 bg-[#F5F5F5] rounded-full font-medium">BUILD</span>
-                  <span className="text-neutral-400">↓</span>
-                  <span className="px-4 sm:px-6 py-2 sm:py-3 bg-[#F5F5F5] rounded-full font-medium">VALIDATE</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -182,9 +166,8 @@ export default function Challenge() {
               <div key={domain.id}>
                 <div
                   onClick={() => setActiveDomain(isSelected ? null : domain.id)}
-                  className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between cursor-pointer h-full border border-neutral-100"
+                  className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between cursor-pointer h-full border border-neutral-100 transition-colors hover:bg-neutral-200/70"
                 >
-                  <DitherBg opacity={0.25} />
                   <div className="relative z-10 space-y-4 sm:space-y-6">
                     <div className="flex items-baseline justify-between">
                       <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
@@ -235,8 +218,7 @@ export default function Challenge() {
         </div>
 
         {/* Navigation Banner */}
-        <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
-          <DitherBg opacity={0.25} />
+        <div className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
           <div className="relative z-10 space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
               READY TO EXPLORE THE SPRINT PROCESS?

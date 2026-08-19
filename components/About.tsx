@@ -2,10 +2,61 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import DitherBg from "@/components/DitherBg";
+import Image from "next/image";
+import img2 from "@/public/images/2.png";
+import img3 from "@/public/images/3.png";
+import img4 from "@/public/images/4.png";
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
+
+  // Card 1 (REAL PROBLEMS) Image Attributes: Scale, X-axis, Y-axis
+  const card1Scale = 1.0;
+  const card1X = 0; // in px
+  const card1Y = 0; // in px
+
+  // Card 2 (REAL ENGINEERING) Image Attributes: Scale, X-axis, Y-axis
+  const card2Scale = 1.0;
+  const card2X = 0; // in px
+  const card2Y = 0; // in px
+
+  // Card 3 (REAL IMPACT) Image Attributes: Scale, X-axis, Y-axis
+  const card3Scale = 1.0;
+  const card3X = 0; // in px
+  const card3Y = 0; // in px
+
+  const pillars = [
+    {
+      title: "REAL PROBLEMS",
+      description:
+        "Grounded in tangible realities and lived human friction, not synthetic hype.",
+      image: img2,
+      alt: "Real Problems Visual",
+      scale: card1Scale,
+      x: card1X,
+      y: card1Y,
+    },
+    {
+      title: "REAL ENGINEERING",
+      description:
+        "Functional architectures, resilient software, hardware systems, and defensible logic.",
+      image: img3,
+      alt: "Real Engineering Visual",
+      scale: card2Scale,
+      x: card2X,
+      y: card2Y,
+    },
+    {
+      title: "REAL IMPACT",
+      description:
+        "Measurable value delivered to communities, ecosystems, and public infrastructure through the OUANTUM innovation network.",
+      image: img4,
+      alt: "Real Impact Visual",
+      scale: card3Scale,
+      x: card3X,
+      y: card3Y,
+    },
+  ];
 
   return (
     <section
@@ -62,43 +113,44 @@ export default function About() {
           </div>
         </div>
 
-        {/* 3 Pillars with Dither BG */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <div className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-4">
-              <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
-                REAL PROBLEMS
-              </h3>
-              <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
-                Grounded in tangible realities and lived human friction, not synthetic hype.
-              </p>
-            </div>
-          </div>
+        {/* 3 Pillars Cards with Images at the TOP, Scale, X-axis, Y-axis, and No Hover Effect */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {pillars.map((pillar, idx) => (
+            <div
+              key={idx}
+              className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl min-h-[380px] sm:min-h-[420px] flex flex-col justify-between border border-neutral-100"
+            >
+              {/* Positioned Artwork at the TOP with Scale, X-axis, and Y-axis (No Hover Effect) */}
+              <div className="relative w-full h-44 sm:h-52 mb-6 overflow-hidden flex items-center justify-center pointer-events-none select-none">
+                <div
+                  style={{
+                    transform: `translate(${pillar.x}px, ${pillar.y}px) scale(${pillar.scale})`,
+                    transformOrigin: "center center",
+                  }}
+                  className="w-full h-full relative"
+                >
+                  <Image
+                    src={pillar.image}
+                    alt={pillar.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    quality={90}
+                    className="object-contain object-top"
+                  />
+                </div>
+              </div>
 
-          <div className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-4">
-              <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
-                REAL ENGINEERING
-              </h3>
-              <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
-                Functional architectures, resilient software, hardware systems, and defensible logic.
-              </p>
+              {/* Card Bottom Content */}
+              <div className="relative z-10 space-y-3">
+                <h3 className="text-2xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                  {pillar.title}
+                </h3>
+                <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
+                  {pillar.description}
+                </p>
+              </div>
             </div>
-          </div>
-
-          <div className="relative overflow-hidden p-8 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-4">
-              <h3 className="text-2xl font-geist-light uppercase tracking-tight text-black">
-                REAL IMPACT
-              </h3>
-              <p className="text-sm text-neutral-600 font-inter font-light leading-relaxed">
-                Measurable value delivered to communities, ecosystems, and public infrastructure through the OUANTUM innovation network.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Action Link to Philosophy */}

@@ -58,6 +58,13 @@
   font-family: var(--font-inter), sans-serif;
 }
 
+/* Hardware accelerated card optimization */
+.dither-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 /* Selection */
 ::selection {
   background-color: #000000;

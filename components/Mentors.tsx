@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import DitherBg from "@/components/DitherBg";
 
 interface Mentor {
   name: string;
@@ -64,7 +63,7 @@ export default function Mentors() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
           <div className="lg:col-span-6 space-y-3 sm:space-y-4">
             <h2 className="text-3xl sm:text-6xl lg:text-7xl font-geist-thin uppercase tracking-tight text-black leading-tight">
-              PEOPLE BEHIND<br />THE JUDGING
+              MENTORS &<br />EVALUATORS
             </h2>
           </div>
           <div className="lg:col-span-6 flex flex-col justify-between space-y-4 sm:space-y-6">
@@ -80,15 +79,14 @@ export default function Mentors() {
           </div>
         </div>
 
-        {/* Profile Cards with Dither BG */}
+        {/* Profile Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {mentors.map((m, idx) => (
             <div
               key={idx}
-              className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between border border-neutral-100"
+              className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between border border-neutral-100"
             >
-              <DitherBg opacity={0.25} />
-              <div className="relative z-10 space-y-4 sm:space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                     JURY & MENTOR
@@ -108,7 +106,7 @@ export default function Mentors() {
                 </div>
               </div>
 
-              <div className="relative z-10 space-y-2 pt-2">
+              <div className="space-y-2 pt-2">
                 <span className="text-xs font-medium text-black uppercase tracking-wider block">
                   FOCUS: {m.domain}
                 </span>

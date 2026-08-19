@@ -7,7 +7,6 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import OriginsLoader from "@/components/OriginsLoader";
-import DitherBg from "@/components/DitherBg";
 
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
@@ -66,7 +65,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-black font-inter selection:bg-black selection:text-white">
       {/* Intro Stroke Formation Loader */}
-      <OriginsLoader autoDismiss={true} duration={3.4} />
+      <OriginsLoader autoDismiss={true} duration={0.8} />
 
       {/* Sticky Top Navigation */}
       <Navbar />
@@ -102,10 +101,9 @@ export default function Home() {
               <div key={idx}>
                 <Link
                   href={m.href}
-                  className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between group cursor-pointer h-full border border-neutral-100"
+                  className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between group cursor-pointer h-full border border-neutral-100 transition-all hover:bg-neutral-200/80"
                 >
-                  <DitherBg opacity={0.25} />
-                  <div className="relative z-10 space-y-4 sm:space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     <div className="flex items-baseline justify-between">
                       <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                         MODULE
@@ -125,7 +123,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                  <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
                     {m.detail}
                   </p>
                 </Link>
@@ -135,8 +133,7 @@ export default function Home() {
 
           {/* Direct CTA Bar */}
           <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-2 text-left">
+            <div className="space-y-2 text-left">
               <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                 READY TO ENTER OUANTUM ORIGINS 2026?
               </h3>
@@ -147,7 +144,7 @@ export default function Home() {
 
             <Link
               href="/register"
-              className="relative z-10 w-full md:w-auto px-8 sm:px-10 py-4 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block shrink-0 text-center"
+              className="w-full md:w-auto px-8 sm:px-10 py-4 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block shrink-0 text-center"
             >
               REGISTER NOW →
             </Link>

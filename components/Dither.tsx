@@ -1,23 +1,34 @@
 "use client";
 
-/* eslint-disable react/no-unknown-property */
 import React, { useRef, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
 
-import "./Dither.css";
+interface DitherProps {
+  waveSpeed?: number;
+  waveFrequency?: number;
+  waveAmplitude?: number;
+  waveColor?: string | number[];
+  colorNum?: number;
+  pixelSize?: number;
+  disableAnimation?: boolean;
+  enableMouseInteraction?: boolean;
+  mouseRadius?: number;
+  className?: string;
+}
 
-const waveVertexShader = `
-precision highp float;
-varying vec2 vUv;
+const VERTEX_SHADER_SRC = `
+attribute vec2 a_position;
+varying vec2 v_uv;
+
 void main() {
-  vUv = uv;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  v_uv = (a_position + 1.0) * 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
 }
 `;
 
-const waveFragmentShader = `
+// High-Performance React Bits Dither Shader
+const FRAGMENT_SHADER_SRC = `
 precision highp float;
+
 uniform vec2 resolution;
 uniform float time;
 uniform float waveSpeed;
@@ -31,16 +42,78 @@ uniform float colorNum;
 uniform float pixelSize;
 
 // 8x8 Bayer Matrix for authentic retro Bayer dithering
-const float bayerMatrix8x8[64] = float[64](
-  0.0/64.0, 48.0/64.0, 12.0/64.0, 60.0/64.0,  3.0/64.0, 51.0/64.0, 15.0/64.0, 63.0/64.0,
-  32.0/64.0,16.0/64.0, 44.0/64.0, 28.0/64.0, 35.0/64.0,19.0/64.0, 47.0/64.0, 31.0/64.0,
-  8.0/64.0, 56.0/64.0,  4.0/64.0, 52.0/64.0, 11.0/64.0,59.0/64.0,  7.0/64.0, 55.0/64.0,
-  40.0/64.0,24.0/64.0, 36.0/64.0, 20.0/64.0, 43.0/64.0,27.0/64.0, 39.0/64.0, 23.0/64.0,
-  2.0/64.0, 50.0/64.0, 14.0/64.0, 62.0/64.0,  1.0/64.0,49.0/64.0, 13.0/64.0, 61.0/64.0,
-  34.0/64.0,18.0/64.0, 46.0/64.0, 30.0/64.0, 33.0/64.0,17.0/64.0, 45.0/64.0, 29.0/64.0,
-  10.0/64.0,58.0/64.0,  6.0/64.0, 54.0/64.0,  9.0/64.0,57.0/64.0,  5.0/64.0, 53.0/64.0,
-  42.0/64.0,26.0/64.0, 38.0/64.0, 22.0/64.0, 41.0/64.0,25.0/64.0, 37.0/64.0, 21.0/64.0
-);
+float getBayer8(int x, int y) {
+  int idx = y * 8 + x;
+  if (idx < 16) {
+    if (idx == 0) return 0.0/64.0;
+    if (idx == 1) return 48.0/64.0;
+    if (idx == 2) return 12.0/64.0;
+    if (idx == 3) return 60.0/64.0;
+    if (idx == 4) return 3.0/64.0;
+    if (idx == 5) return 51.0/64.0;
+    if (idx == 6) return 15.0/64.0;
+    if (idx == 7) return 63.0/64.0;
+    if (idx == 8) return 32.0/64.0;
+    if (idx == 9) return 16.0/64.0;
+    if (idx == 10) return 44.0/64.0;
+    if (idx == 11) return 28.0/64.0;
+    if (idx == 12) return 35.0/64.0;
+    if (idx == 13) return 19.0/64.0;
+    if (idx == 14) return 47.0/64.0;
+    return 31.0/64.0;
+  } else if (idx < 32) {
+    if (idx == 16) return 8.0/64.0;
+    if (idx == 17) return 56.0/64.0;
+    if (idx == 18) return 4.0/64.0;
+    if (idx == 19) return 52.0/64.0;
+    if (idx == 20) return 11.0/64.0;
+    if (idx == 21) return 59.0/64.0;
+    if (idx == 22) return 7.0/64.0;
+    if (idx == 23) return 55.0/64.0;
+    if (idx == 24) return 40.0/64.0;
+    if (idx == 25) return 24.0/64.0;
+    if (idx == 26) return 36.0/64.0;
+    if (idx == 27) return 20.0/64.0;
+    if (idx == 28) return 43.0/64.0;
+    if (idx == 29) return 27.0/64.0;
+    if (idx == 30) return 39.0/64.0;
+    return 23.0/64.0;
+  } else if (idx < 48) {
+    if (idx == 32) return 2.0/64.0;
+    if (idx == 33) return 50.0/64.0;
+    if (idx == 34) return 14.0/64.0;
+    if (idx == 35) return 62.0/64.0;
+    if (idx == 36) return 1.0/64.0;
+    if (idx == 37) return 49.0/64.0;
+    if (idx == 38) return 13.0/64.0;
+    if (idx == 39) return 61.0/64.0;
+    if (idx == 40) return 34.0/64.0;
+    if (idx == 41) return 18.0/64.0;
+    if (idx == 42) return 46.0/64.0;
+    if (idx == 43) return 30.0/64.0;
+    if (idx == 44) return 33.0/64.0;
+    if (idx == 45) return 17.0/64.0;
+    if (idx == 46) return 45.0/64.0;
+    return 29.0/64.0;
+  } else {
+    if (idx == 48) return 10.0/64.0;
+    if (idx == 49) return 58.0/64.0;
+    if (idx == 50) return 6.0/64.0;
+    if (idx == 51) return 54.0/64.0;
+    if (idx == 52) return 9.0/64.0;
+    if (idx == 53) return 57.0/64.0;
+    if (idx == 54) return 5.0/64.0;
+    if (idx == 55) return 53.0/64.0;
+    if (idx == 56) return 42.0/64.0;
+    if (idx == 57) return 26.0/64.0;
+    if (idx == 58) return 38.0/64.0;
+    if (idx == 59) return 22.0/64.0;
+    if (idx == 60) return 41.0/64.0;
+    if (idx == 61) return 25.0/64.0;
+    if (idx == 62) return 37.0/64.0;
+    return 21.0/64.0;
+  }
+}
 
 vec4 mod289(vec4 x) { return x - floor(x * (1.0/289.0)) * 289.0; }
 vec4 permute(vec4 x) { return mod289(((x * 34.0) + 1.0) * x); }
@@ -75,7 +148,7 @@ float cnoise(vec2 P) {
   return 2.3 * mix(n_x.x, n_x.y, fade_xy.y);
 }
 
-const int OCTAVES = 4;
+const int OCTAVES = 3;
 float fbm(vec2 p) {
   float value = 0.0;
   float amp = 1.0;
@@ -88,197 +161,268 @@ float fbm(vec2 p) {
   return value;
 }
 
-// Flowing dynamic pattern
 float pattern(vec2 p) {
-  vec2 p1 = p + vec2(time * waveSpeed * 0.45, time * waveSpeed * 0.3);
-  vec2 p2 = p - vec2(time * waveSpeed * 0.35, -time * waveSpeed * 0.5);
-  return fbm(p1 + fbm(p2)); 
+  vec2 p2 = p - time * waveSpeed;
+  return fbm(p + fbm(p2)); 
+}
+
+vec3 dither(vec2 coord, vec3 color) {
+  int x = int(mod(coord.x, 8.0));
+  int y = int(mod(coord.y, 8.0));
+  float threshold = getBayer8(x, y) - 0.25;
+  float stepVal = 1.0 / (colorNum - 1.0);
+  color += threshold * stepVal;
+  float bias = 0.2;
+  color = clamp(color - bias, 0.0, 1.0);
+  return floor(color * (colorNum - 1.0) + 0.5) / (colorNum - 1.0);
 }
 
 void main() {
-  vec2 pixelatedCoord = floor(gl_FragCoord.xy / pixelSize) * pixelSize;
-  vec2 uv = pixelatedCoord / resolution.xy;
+  vec2 normalizedPixelSize = pixelSize / resolution;
+  vec2 uvPixel = normalizedPixelSize * floor((gl_FragCoord.xy / resolution) / normalizedPixelSize);
+  
+  vec2 uv = uvPixel;
   uv -= 0.5;
-  uv.x *= resolution.x / resolution.y;
+  uv.x *= resolution.x / max(resolution.y, 1.0);
   
   float f = pattern(uv);
   
   if (enableMouseInteraction == 1) {
     vec2 mouseNDC = (mousePos / resolution - 0.5) * vec2(1.0, -1.0);
-    mouseNDC.x *= resolution.x / resolution.y;
+    mouseNDC.x *= resolution.x / max(resolution.y, 1.0);
     float dist = length(uv - mouseNDC);
     float effect = 1.0 - smoothstep(0.0, mouseRadius, dist);
     f -= 0.5 * effect;
   }
   
-  vec3 col = mix(vec3(0.0), waveColor, clamp(f, 0.0, 1.0));
+  vec3 col = mix(vec3(0.0), waveColor, f);
   
-  // Single-pass Bayer Dithering
-  int x = int(mod(floor(gl_FragCoord.x / pixelSize), 8.0));
-  int y = int(mod(floor(gl_FragCoord.y / pixelSize), 8.0));
-  float threshold = bayerMatrix8x8[y * 8 + x] - 0.25;
-  float stepVal = 1.0 / (colorNum - 1.0);
-  col += threshold * stepVal;
-  col = clamp(col - 0.2, 0.0, 1.0);
-  col = floor(col * (colorNum - 1.0) + 0.5) / (colorNum - 1.0);
-
+  vec2 scaledCoord = floor(gl_FragCoord.xy / pixelSize);
+  col = dither(scaledCoord, col);
+  
   gl_FragColor = vec4(col, 1.0);
 }
 `;
 
-interface DitheredWavesProps {
-  waveSpeed: number;
-  waveFrequency: number;
-  waveAmplitude: number;
-  waveColor: number[];
-  colorNum: number;
-  pixelSize: number;
-  disableAnimation: boolean;
-  enableMouseInteraction: boolean;
-  mouseRadius: number;
+function createShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    gl.deleteShader(shader);
+    return null;
+  }
+  return shader;
 }
 
-function DitheredWaves({
-  waveSpeed,
-  waveFrequency,
-  waveAmplitude,
-  waveColor,
-  colorNum,
-  pixelSize,
-  disableAnimation,
-  enableMouseInteraction,
-  mouseRadius,
-}: DitheredWavesProps) {
-  const mesh = useRef<THREE.Mesh>(null);
-  const mouseRef = useRef(new THREE.Vector2());
-  const { viewport, size, gl } = useThree();
-
-  const waveUniformsRef = useRef({
-    time: new THREE.Uniform(0),
-    resolution: new THREE.Uniform(new THREE.Vector2(100, 100)),
-    waveSpeed: new THREE.Uniform(waveSpeed),
-    waveFrequency: new THREE.Uniform(waveFrequency),
-    waveAmplitude: new THREE.Uniform(waveAmplitude),
-    waveColor: new THREE.Uniform(new THREE.Color(waveColor[0], waveColor[1], waveColor[2])),
-    mousePos: new THREE.Uniform(new THREE.Vector2(0, 0)),
-    enableMouseInteraction: new THREE.Uniform(enableMouseInteraction ? 1 : 0),
-    mouseRadius: new THREE.Uniform(mouseRadius),
-    colorNum: new THREE.Uniform(colorNum),
-    pixelSize: new THREE.Uniform(pixelSize),
-  });
-
-  useEffect(() => {
-    const w = Math.max(1, Math.floor(size.width));
-    const h = Math.max(1, Math.floor(size.height));
-    const res = waveUniformsRef.current.resolution.value;
-    if (res.x !== w || res.y !== h) {
-      res.set(w, h);
-    }
-  }, [size]);
-
-  const prevColor = useRef([...waveColor]);
-  useFrame(({ clock }) => {
-    const u = waveUniformsRef.current;
-
-    if (!disableAnimation) {
-      u.time.value = clock.getElapsedTime();
-    }
-
-    if (u.waveSpeed.value !== waveSpeed) u.waveSpeed.value = waveSpeed;
-    if (u.waveFrequency.value !== waveFrequency) u.waveFrequency.value = waveFrequency;
-    if (u.waveAmplitude.value !== waveAmplitude) u.waveAmplitude.value = waveAmplitude;
-    if (u.colorNum.value !== colorNum) u.colorNum.value = colorNum;
-    if (u.pixelSize.value !== pixelSize) u.pixelSize.value = pixelSize;
-
-    if (!prevColor.current.every((v, i) => v === waveColor[i])) {
-      u.waveColor.value.set(waveColor[0], waveColor[1], waveColor[2]);
-      prevColor.current = [...waveColor];
-    }
-
-    u.enableMouseInteraction.value = enableMouseInteraction ? 1 : 0;
-    u.mouseRadius.value = mouseRadius;
-
-    if (enableMouseInteraction) {
-      u.mousePos.value.copy(mouseRef.current);
-    }
-  });
-
-  const handlePointerMove = (e: any) => {
-    if (!enableMouseInteraction) return;
-    const rect = gl.domElement.getBoundingClientRect();
-    mouseRef.current.set(e.clientX - rect.left, e.clientY - rect.top);
-  };
-
-  return (
-    <mesh
-      ref={mesh}
-      scale={[viewport.width, viewport.height, 1]}
-      onPointerMove={handlePointerMove}
-    >
-      <planeGeometry args={[1, 1]} />
-      <shaderMaterial
-        vertexShader={waveVertexShader}
-        fragmentShader={waveFragmentShader}
-        uniforms={waveUniformsRef.current}
-        depthTest={false}
-        depthWrite={false}
-      />
-    </mesh>
-  );
-}
-
-export interface DitherProps {
-  waveSpeed?: number;
-  waveFrequency?: number;
-  waveAmplitude?: number;
-  waveColor?: string | number[];
-  colorNum?: number;
-  pixelSize?: number;
-  disableAnimation?: boolean;
-  enableMouseInteraction?: boolean;
-  mouseRadius?: number;
+function createProgram(
+  gl: WebGLRenderingContext,
+  vertexShader: WebGLShader,
+  fragmentShader: WebGLShader
+): WebGLProgram | null {
+  const program = gl.createProgram();
+  if (!program) return null;
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    gl.deleteProgram(program);
+    return null;
+  }
+  return program;
 }
 
 export default function Dither({
-  waveSpeed = 0.22,
-  waveFrequency = 3.5,
-  waveAmplitude = 0.38,
-  waveColor = [0.3254901960784314, 0.3176470588235294, 0.3176470588235294],
+  waveSpeed = 0.08,
+  waveFrequency = 3.0,
+  waveAmplitude = 0.3,
+  waveColor = [0.45, 0.45, 0.45],
   colorNum = 4,
-  pixelSize = 2.5,
+  pixelSize = 2.0,
   disableAnimation = false,
   enableMouseInteraction = true,
-  mouseRadius = 0.3,
+  mouseRadius = 0.35,
+  className = "",
 }: DitherProps) {
-  const parsedWaveColor =
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const animFrameRef = useRef<number | null>(null);
+
+  const parsedColor =
     typeof waveColor === "string"
       ? waveColor.split(",").map((v) => parseFloat(v.trim()))
       : waveColor;
 
-  return (
-    <Canvas
-      className="dither-container"
-      camera={{ position: [0, 0, 1] }}
-      dpr={1}
-      gl={{
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const gl =
+      (canvas.getContext("webgl2", {
+        alpha: false,
         antialias: false,
-        powerPreference: "high-performance",
         depth: false,
         stencil: false,
         preserveDrawingBuffer: false,
-      }}
-    >
-      <DitheredWaves
-        waveSpeed={waveSpeed}
-        waveFrequency={waveFrequency}
-        waveAmplitude={waveAmplitude}
-        waveColor={parsedWaveColor}
-        colorNum={colorNum}
-        pixelSize={pixelSize}
-        disableAnimation={disableAnimation}
-        enableMouseInteraction={enableMouseInteraction}
-        mouseRadius={mouseRadius}
-      />
-    </Canvas>
+        powerPreference: "high-performance",
+      }) as WebGLRenderingContext | null) ||
+      (canvas.getContext("webgl", {
+        alpha: false,
+        antialias: false,
+        depth: false,
+        stencil: false,
+        preserveDrawingBuffer: false,
+        powerPreference: "high-performance",
+      }) as WebGLRenderingContext | null) ||
+      (canvas.getContext("experimental-webgl") as WebGLRenderingContext | null);
+
+    if (!gl) return;
+
+    const vertexShader = createShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER_SRC);
+    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER_SRC);
+    if (!vertexShader || !fragmentShader) return;
+
+    const program = createProgram(gl, vertexShader, fragmentShader);
+    if (!program) return;
+
+    gl.useProgram(program);
+
+    const positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([
+        -1, -1,
+         1, -1,
+        -1,  1,
+        -1,  1,
+         1, -1,
+         1,  1,
+      ]),
+      gl.STATIC_DRAW
+    );
+
+    const posAttrLoc = gl.getAttribLocation(program, "a_position");
+    gl.enableVertexAttribArray(posAttrLoc);
+    gl.vertexAttribPointer(posAttrLoc, 2, gl.FLOAT, false, 0, 0);
+
+    const uResolution = gl.getUniformLocation(program, "resolution");
+    const uTime = gl.getUniformLocation(program, "time");
+    const uWaveSpeed = gl.getUniformLocation(program, "waveSpeed");
+    const uWaveFrequency = gl.getUniformLocation(program, "waveFrequency");
+    const uWaveAmplitude = gl.getUniformLocation(program, "waveAmplitude");
+    const uWaveColor = gl.getUniformLocation(program, "waveColor");
+    const uMousePos = gl.getUniformLocation(program, "mousePos");
+    const uEnableMouse = gl.getUniformLocation(program, "enableMouseInteraction");
+    const uMouseRadius = gl.getUniformLocation(program, "mouseRadius");
+    const uColorNum = gl.getUniformLocation(program, "colorNum");
+    const uPixelSize = gl.getUniformLocation(program, "pixelSize");
+
+    let width = 0;
+    let height = 0;
+
+    const resize = () => {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const parentW = canvas.parentElement?.clientWidth || rect.width || 300;
+      const parentH = canvas.parentElement?.clientHeight || rect.height || 200;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const newWidth = Math.max(1, Math.floor(parentW * dpr));
+      const newHeight = Math.max(1, Math.floor(parentH * dpr));
+
+      if (canvas.width !== newWidth || canvas.height !== newHeight) {
+        canvas.width = newWidth;
+        canvas.height = newHeight;
+        gl.viewport(0, 0, newWidth, newHeight);
+        width = newWidth;
+        height = newHeight;
+      }
+    };
+
+    resize();
+
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+    });
+    resizeObserver.observe(canvas);
+
+    const startTime = performance.now();
+    let isRunning = true;
+
+    const drawFrame = (currentTime: number) => {
+      gl.useProgram(program);
+      gl.uniform2f(uResolution, width || canvas.width || 300, height || canvas.height || 200);
+      gl.uniform1f(uTime, currentTime);
+      gl.uniform1f(uWaveSpeed, waveSpeed);
+      gl.uniform1f(uWaveFrequency, waveFrequency);
+      gl.uniform1f(uWaveAmplitude, waveAmplitude);
+      gl.uniform3f(uWaveColor, parsedColor[0] ?? 0.45, parsedColor[1] ?? 0.45, parsedColor[2] ?? 0.45);
+      gl.uniform2f(uMousePos, mouseRef.current.x, mouseRef.current.y);
+      gl.uniform1i(uEnableMouse, enableMouseInteraction ? 1 : 0);
+      gl.uniform1f(uMouseRadius, mouseRadius);
+      gl.uniform1f(uColorNum, colorNum);
+      gl.uniform1f(uPixelSize, pixelSize);
+
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+    };
+
+    // Draw initial frame 0 synchronously
+    drawFrame(0);
+
+    const render = () => {
+      if (!isRunning) return;
+      const currentTime = disableAnimation ? 0 : (performance.now() - startTime) * 0.001;
+      drawFrame(currentTime);
+      animFrameRef.current = requestAnimationFrame(render);
+    };
+
+    render();
+
+    const handlePointerMove = (e: MouseEvent) => {
+      if (!enableMouseInteraction || !canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      mouseRef.current = {
+        x: (e.clientX - rect.left) * dpr,
+        y: (e.clientY - rect.top) * dpr,
+      };
+    };
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+
+    return () => {
+      isRunning = false;
+      if (animFrameRef.current !== null) {
+        cancelAnimationFrame(animFrameRef.current);
+      }
+      window.removeEventListener("pointermove", handlePointerMove);
+      resizeObserver.disconnect();
+
+      if (gl) {
+        gl.deleteBuffer(positionBuffer);
+        gl.deleteProgram(program);
+        gl.deleteShader(vertexShader);
+        gl.deleteShader(fragmentShader);
+      }
+    };
+  }, [
+    waveSpeed,
+    waveFrequency,
+    waveAmplitude,
+    parsedColor,
+    colorNum,
+    pixelSize,
+    disableAnimation,
+    enableMouseInteraction,
+    mouseRadius,
+  ]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`w-full h-full block absolute inset-0 rounded-[inherit] pointer-events-none object-cover ${className}`}
+      style={{ width: "100%", height: "100%" }}
+    />
   );
 }

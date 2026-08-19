@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import DitherBg from "@/components/DitherBg";
 
 interface SchedulePhase {
   time: string;
@@ -87,15 +86,14 @@ export default function The24Hours() {
           </div>
         </div>
 
-        {/* 7 Schedule Cards in Responsive Grid with Dither BG */}
+        {/* 7 Schedule Cards in Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {phases.map((item, index) => (
             <div
               key={index}
-              className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between border border-neutral-100"
+              className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between border border-neutral-100"
             >
-              <DitherBg opacity={0.25} />
-              <div className="relative z-10 space-y-4 sm:space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                     MILESTONE {index + 1}
@@ -115,7 +113,7 @@ export default function The24Hours() {
                 </div>
               </div>
 
-              <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+              <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
                 {item.detail}
               </p>
             </div>
@@ -123,9 +121,8 @@ export default function The24Hours() {
         </div>
 
         {/* Navigation Banner */}
-        <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
-          <DitherBg opacity={0.25} />
-          <div className="relative z-10 space-y-2 text-left">
+        <div className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
+          <div className="space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
               EXPLORE JUDGING CRITERIA & JURY
             </h3>
@@ -134,7 +131,7 @@ export default function The24Hours() {
             </p>
           </div>
 
-          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/process"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import DitherBg from "@/components/DitherBg";
 
 interface RegistrationData {
   id: string;
@@ -501,8 +500,7 @@ export default function Registration() {
             </div>
 
             {/* YOUR DETAILS */}
-            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
-              <DitherBg opacity={0.2} />
+            <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
               <div className="relative z-10 space-y-6">
                 <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                   YOUR DETAILS
@@ -578,8 +576,7 @@ export default function Registration() {
             </div>
 
             {/* BACKGROUND */}
-            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
-              <DitherBg opacity={0.2} />
+            <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
               <div className="relative z-10 space-y-6">
                 <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                   BACKGROUND
@@ -638,8 +635,7 @@ export default function Registration() {
             </div>
 
             {/* YOUR BUILD */}
-            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
-              <DitherBg opacity={0.2} />
+            <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
               <div className="relative z-10 space-y-6">
                 <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                   YOUR BUILD
@@ -727,8 +723,7 @@ export default function Registration() {
             </div>
 
             {/* CONFIRM & SUBMIT */}
-            <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
-              <DitherBg opacity={0.2} />
+            <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 border border-neutral-100">
               <div className="relative z-10 space-y-6">
                 <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                   CONFIRM

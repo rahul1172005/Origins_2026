@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import DitherBg from "@/components/DitherBg";
 
 export default function Prizes() {
   const containerRef = useRef<HTMLElement>(null);
@@ -58,12 +57,11 @@ export default function Prizes() {
           </div>
         </div>
 
-        {/* Grand Prize & Runner Up Cards with Dither BG */}
+        {/* Grand Prize & Runner Up Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Grand Prize */}
-          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-4 sm:space-y-6">
+          <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
+            <div className="space-y-4 sm:space-y-6">
               <div className="flex items-baseline justify-between">
                 <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                   OUANTUM GRANT
@@ -83,15 +81,14 @@ export default function Prizes() {
               </div>
             </div>
 
-            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+            <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
               For the solution with the strongest combination of originality, engineering rigor, and measurable real-world impact. Includes direct OUANTUM technical incubation and advisory deployment.
             </p>
           </div>
 
           {/* Runner Up */}
-          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-4 sm:space-y-6">
+          <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between h-full border border-neutral-100">
+            <div className="space-y-4 sm:space-y-6">
               <div className="flex items-baseline justify-between">
                 <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                   OUANTUM GRANT
@@ -111,13 +108,13 @@ export default function Prizes() {
               </div>
             </div>
 
-            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+            <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
               For the team exhibiting exceptional technical execution, deep domain empathy, and immediate pilot feasibility within the OUANTUM ecosystem.
             </p>
           </div>
         </div>
 
-        {/* Special Recognition Categories with Dither BG */}
+        {/* Special Recognition Categories */}
         <div className="pt-6 sm:pt-8 space-y-8 sm:space-y-10">
           <div className="space-y-2">
             <h3 className="text-2xl sm:text-4xl font-geist-thin uppercase tracking-tight text-black">
@@ -129,10 +126,9 @@ export default function Prizes() {
             {specialRecognitions.map((item, idx) => (
               <div
                 key={idx}
-                className="relative overflow-hidden p-6 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100"
+                className="p-6 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100"
               >
-                <DitherBg opacity={0.25} />
-                <div className="relative z-10 space-y-3 sm:space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter block">
                     HONOR
                   </span>
@@ -147,7 +143,7 @@ export default function Prizes() {
                   </div>
                 </div>
 
-                <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
                   {item.detail}
                 </p>
               </div>
@@ -156,9 +152,8 @@ export default function Prizes() {
         </div>
 
         {/* Navigation Banner */}
-        <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
-          <DitherBg opacity={0.25} />
-          <div className="relative z-10 space-y-2 text-left">
+        <div className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
+          <div className="space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
               HAVE QUESTIONS ABOUT ORIGINS 2026?
             </h3>
@@ -167,7 +162,7 @@ export default function Prizes() {
             </p>
           </div>
 
-          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/judging"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"

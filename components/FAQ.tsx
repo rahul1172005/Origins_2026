@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import DitherBg from "@/components/DitherBg";
 
 interface FAQItem {
   question: string;
@@ -58,27 +57,17 @@ const faqs: FAQItem[] = [
   {
     question: "Where does the sprint take place?",
     answer:
-      "ORIGINS 2026 runs simultaneously with live physical hubs in Bengaluru and hybrid online coordination for selected distributed teams worldwide.",
+      "ORIGINS 2026 runs in a hybrid structure: physical innovation nodes in Chennai with global live streaming, real-time code audit checkpoints, and 24-hour dedicated mentor lounges on the official OUANTUM platform.",
   },
   {
-    question: "Can I participate if I don't have a team?",
+    question: "Who retains ownership of Intellectual Property (IP)?",
     answer:
-      "Yes. You can register as a Solo Architect. We also host a dedicated team-formation channel during the kickoff phase for solo participants seeking collaborators.",
+      "100% IP ownership remains with the participants and builder teams. OUANTUM claims zero equity or IP rights to projects created during the sprint.",
   },
   {
-    question: "Will mentors be available during the sprint?",
+    question: "What happens after ORIGINS 2026?",
     answer:
-      "Yes. OUANTUM research staff, system architects, and industry experts provide scheduled checkpoints and on-demand guidance throughout the full 24-hour duration.",
-  },
-  {
-    question: "Who retains ownership of the intellectual property?",
-    answer:
-      "You retain 100% ownership of everything you build during ORIGINS 2026. Neither OUANTUM nor its affiliates claim any rights to your code, patents, or assets.",
-  },
-  {
-    question: "What do I need to submit?",
-    answer:
-      "At the 24-hour mark, each team submits an integrated package: Problem Statement, Solution Overview, Working Prototype link or demo, Public Code Repository, Impact Metric Analysis, and Post-Origins Roadmap.",
+      "Winning teams and promising projects receive fast-tracked invitations to the OUANTUM Accelerator, connecting builders directly with institutional pilot partners, research facilities, and grant funding.",
   },
 ];
 
@@ -107,7 +96,7 @@ export default function FAQ() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-2 sm:pt-4">
             <div className="lg:col-span-6 space-y-3 sm:space-y-4">
               <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-geist-light tracking-tight leading-[1.05] text-black uppercase">
-                FREQUENTLY<br />ASKED QUESTIONS.
+                FREQUENTLY<br />ASKED.
               </h2>
             </div>
             <div className="lg:col-span-6 flex items-end">
@@ -118,7 +107,7 @@ export default function FAQ() {
           </div>
         </div>
 
-        {/* 12 FAQ Cards in Responsive Grid with Dither BG */}
+        {/* 12 FAQ Cards in Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
@@ -126,10 +115,9 @@ export default function FAQ() {
               <div key={index}>
                 <div
                   onClick={() => toggleFAQ(index)}
-                  className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between cursor-pointer h-full border border-neutral-100"
+                  className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between cursor-pointer h-full border border-neutral-100 transition-colors hover:bg-neutral-200/70"
                 >
-                  <DitherBg opacity={0.25} />
-                  <div className="relative z-10 space-y-4 sm:space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     <div className="flex items-baseline justify-between">
                       <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
                         QUESTION
@@ -145,7 +133,7 @@ export default function FAQ() {
                   </div>
 
                   {isOpen && (
-                    <div className="relative z-10 pt-2 animate-fadeIn">
+                    <div className="pt-2 animate-fadeIn">
                       <p className="text-xs sm:text-sm text-neutral-600 font-inter font-light leading-relaxed">
                         {faq.answer}
                       </p>
@@ -158,9 +146,8 @@ export default function FAQ() {
         </div>
 
         {/* Navigation Banner */}
-        <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
-          <DitherBg opacity={0.25} />
-          <div className="relative z-10 space-y-2 text-left">
+        <div className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
+          <div className="space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
               READY TO BUILD WHAT SHOULD EXIST?
             </h3>
@@ -169,7 +156,7 @@ export default function FAQ() {
             </p>
           </div>
 
-          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/prizes"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"

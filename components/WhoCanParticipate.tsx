@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import DitherBg from "@/components/DitherBg";
 
 export default function WhoCanParticipate() {
   const roles = [
@@ -46,11 +45,10 @@ export default function WhoCanParticipate() {
           </div>
         </div>
 
-        {/* Individual vs Team Cards with Dither BG */}
+        {/* Individual vs Team Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-2 sm:pt-4">
-          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-2 sm:space-y-3">
+          <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100">
+            <div className="space-y-2 sm:space-y-3">
               <h3 className="text-2xl sm:text-4xl font-geist-light uppercase tracking-tight text-black">
                 INDIVIDUAL
               </h3>
@@ -58,14 +56,13 @@ export default function WhoCanParticipate() {
                 Build alone.
               </p>
             </div>
-            <p className="relative z-10 text-xs sm:text-sm text-neutral-600 font-inter leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 font-inter leading-relaxed">
               For solo architects, specialized researchers, and full-stack builders who prefer autonomous speed, direct end-to-end execution, and singular clarity of vision.
             </p>
           </div>
 
-          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-2 sm:space-y-3">
+          <div className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100">
+            <div className="space-y-2 sm:space-y-3">
               <h3 className="text-2xl sm:text-4xl font-geist-light uppercase tracking-tight text-black">
                 TEAM
               </h3>
@@ -73,7 +70,7 @@ export default function WhoCanParticipate() {
                 Bring people with different skills and build together.
               </p>
             </div>
-            <p className="relative z-10 text-xs sm:text-sm text-neutral-600 font-inter leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 font-inter leading-relaxed">
               Teams of 2 to 4 collaborators. Cross-pollinate technical engineering, interface craft, domain science, and rigorous system validation to compound impact.
             </p>
           </div>

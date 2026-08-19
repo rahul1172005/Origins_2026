@@ -2,10 +2,64 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import DitherBg from "@/components/DitherBg";
+import Image from "next/image";
+import img5 from "@/public/images/5.png";
+import img6 from "@/public/images/6.png";
+import img7 from "@/public/images/7.png";
 
 export default function Philosophy() {
   const containerRef = useRef<HTMLElement>(null);
+
+  // Card 1 (NO SAAS CLONES) Image Attributes: Scale, X-axis, Y-axis
+  const card1Scale = 1.0;
+  const card1X = 0; // in px
+  const card1Y = 0; // in px
+
+  // Card 2 (NO EMPTY PITCHES) Image Attributes: Scale, X-axis, Y-axis
+  const card2Scale = 1.0;
+  const card2X = 0; // in px
+  const card2Y = 0; // in px
+
+  // Card 3 (NO ARTIFICIAL PROBLEMS) Image Attributes: Scale, X-axis, Y-axis
+  const card3Scale = 1.0;
+  const card3X = 0; // in px
+  const card3Y = 0; // in px
+
+  const pillars = [
+    {
+      title: "NO SAAS CLONES",
+      headline: "We are not looking for another version of something that already exists.",
+      detail:
+        "No repackaged CRMs, generic wrappers, or superficial UI redesigns. We prioritize fresh, defensible architectural approaches.",
+      image: img5,
+      alt: "No SaaS Clones Visual",
+      scale: card1Scale,
+      x: card1X,
+      y: card1Y,
+    },
+    {
+      title: "NO EMPTY PITCHES",
+      headline: "A polished presentation cannot replace a meaningful solution.",
+      detail:
+        "We look directly at the codebase, the technical logic, the hardware schematics, and the structural integrity of your build.",
+      image: img6,
+      alt: "No Empty Pitches Visual",
+      scale: card2Scale,
+      x: card2X,
+      y: card2Y,
+    },
+    {
+      title: "NO ARTIFICIAL PROBLEMS",
+      headline: "Build for problems that actually matter.",
+      detail:
+        "Problems people experience daily. Problems worth solving with deep intellect, physical empathy, and engineering craft.",
+      image: img7,
+      alt: "No Artificial Problems Visual",
+      scale: card3Scale,
+      x: card3X,
+      y: card3Y,
+    },
+  ];
 
   const criteria = [
     {
@@ -63,55 +117,49 @@ export default function Philosophy() {
           </div>
         </div>
 
-        {/* 3 Large Editorial Columns with Mobile Padding and Dither BG */}
+        {/* 3 Large Editorial Columns with Images at TOP, Scale, X-axis, Y-axis, and No Hover Effect */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {/* Card 01 */}
-          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-3 sm:space-y-4">
-              <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                NO SAAS CLONES
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
-                We are not looking for another version of something that already exists.
-              </p>
-            </div>
-            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
-              No repackaged CRMs, generic wrappers, or superficial UI redesigns. We prioritize fresh, defensible architectural approaches.
-            </p>
-          </div>
+          {pillars.map((item, idx) => (
+            <div
+              key={idx}
+              className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl min-h-[380px] sm:min-h-[420px] flex flex-col justify-between border border-neutral-100"
+            >
+              {/* Positioned Artwork at the TOP with Scale, X-axis, and Y-axis (No Hover Effect) */}
+              <div className="relative w-full h-44 sm:h-52 mb-6 overflow-hidden flex items-center justify-center pointer-events-none select-none">
+                <div
+                  style={{
+                    transform: `translate(${item.x}px, ${item.y}px) scale(${item.scale})`,
+                    transformOrigin: "center center",
+                  }}
+                  className="w-full h-full relative"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    quality={90}
+                    className="object-contain object-top"
+                  />
+                </div>
+              </div>
 
-          {/* Card 02 */}
-          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-3 sm:space-y-4">
-              <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                NO EMPTY PITCHES
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
-                A polished presentation cannot replace a meaningful solution.
-              </p>
+              {/* Card Text Content */}
+              <div className="space-y-4">
+                <div className="space-y-2 sm:space-y-3">
+                  <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
+                    {item.headline}
+                  </p>
+                </div>
+                <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                  {item.detail}
+                </p>
+              </div>
             </div>
-            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
-              We look directly at the codebase, the technical logic, the hardware schematics, and the structural integrity of your build.
-            </p>
-          </div>
-
-          {/* Card 03 */}
-          <div className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100">
-            <DitherBg opacity={0.25} />
-            <div className="relative z-10 space-y-3 sm:space-y-4">
-              <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                NO ARTIFICIAL PROBLEMS
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
-                Build for problems that actually matter.
-              </p>
-            </div>
-            <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
-              Problems people experience daily. Problems worth solving with deep intellect, physical empathy, and engineering craft.
-            </p>
-          </div>
+          ))}
         </div>
 
         {/* What We Look For Section with Responsive Grid */}
@@ -126,10 +174,9 @@ export default function Philosophy() {
             {criteria.map((item, index) => (
               <div
                 key={index}
-                className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100"
+                className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 flex flex-col justify-between border border-neutral-100"
               >
-                <DitherBg opacity={0.25} />
-                <div className="relative z-10 space-y-2">
+                <div className="space-y-2">
                   <h4 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                     {item.title}
                   </h4>
@@ -138,7 +185,7 @@ export default function Philosophy() {
                   </p>
                 </div>
 
-                <p className="relative z-10 text-xs text-neutral-600 font-inter font-light leading-relaxed">
+                <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
                   {item.detail}
                 </p>
               </div>
@@ -147,9 +194,8 @@ export default function Philosophy() {
         </div>
 
         {/* Navigation Banner */}
-        <div className="relative overflow-hidden p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
-          <DitherBg opacity={0.25} />
-          <div className="relative z-10 space-y-2 text-left">
+        <div className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
+          <div className="space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
               EXPLORE THE 10 FOCUS DOMAINS
             </h3>
@@ -158,7 +204,7 @@ export default function Philosophy() {
             </p>
           </div>
 
-          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/"
               className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"
