@@ -10,20 +10,41 @@ import img7 from "@/public/images/7.png";
 export default function Philosophy() {
   const containerRef = useRef<HTMLElement>(null);
 
-  // Card 1 (NO SAAS CLONES) Image Attributes: Scale, X-axis, Y-axis
+  // =========================================================================
+  // DESKTOP MASCOT CONTROLS (Scale, X-axis in px, Y-axis in px) - Screen >= 640px
+  // =========================================================================
+  // Card 1 (NO SAAS CLONES) Desktop Attributes
   const card1Scale = 1.0;
   const card1X = 0; // in px
   const card1Y = 0; // in px
 
-  // Card 2 (NO EMPTY PITCHES) Image Attributes: Scale, X-axis, Y-axis
+  // Card 2 (NO EMPTY PITCHES) Desktop Attributes
   const card2Scale = 1.0;
   const card2X = 0; // in px
   const card2Y = 0; // in px
 
-  // Card 3 (NO ARTIFICIAL PROBLEMS) Image Attributes: Scale, X-axis, Y-axis
+  // Card 3 (NO ARTIFICIAL PROBLEMS) Desktop Attributes
   const card3Scale = 1.50;
   const card3X = 0; // in px
   const card3Y = 0; // in px
+
+  // =========================================================================
+  // MOBILE MASCOT CONTROLS (Scale, X-axis in px, Y-axis in px) - Screen < 640px
+  // =========================================================================
+  // Card 1 (NO SAAS CLONES) Mobile Attributes
+  const card1MobileScale = 1.0;
+  const card1MobileX = 0; // in px
+  const card1MobileY = 0; // in px
+
+  // Card 2 (NO EMPTY PITCHES) Mobile Attributes
+  const card2MobileScale = 1.0;
+  const card2MobileX = 0; // in px
+  const card2MobileY = 0; // in px
+
+  // Card 3 (NO ARTIFICIAL PROBLEMS) Mobile Attributes
+  const card3MobileScale = 1.50;
+  const card3MobileX = 0; // in px
+  const card3MobileY = 0; // in px
 
   const pillars = [
     {
@@ -36,6 +57,9 @@ export default function Philosophy() {
       scale: card1Scale,
       x: card1X,
       y: card1Y,
+      mobileScale: card1MobileScale,
+      mobileX: card1MobileX,
+      mobileY: card1MobileY,
     },
     {
       title: "NO EMPTY PITCHES",
@@ -47,6 +71,9 @@ export default function Philosophy() {
       scale: card2Scale,
       x: card2X,
       y: card2Y,
+      mobileScale: card2MobileScale,
+      mobileX: card2MobileX,
+      mobileY: card2MobileY,
     },
     {
       title: "NO ARTIFICIAL PROBLEMS",
@@ -58,6 +85,9 @@ export default function Philosophy() {
       scale: card3Scale,
       x: card3X,
       y: card3Y,
+      mobileScale: card3MobileScale,
+      mobileX: card3MobileX,
+      mobileY: card3MobileY,
     },
   ];
 
@@ -124,14 +154,21 @@ export default function Philosophy() {
               key={idx}
               className="relative overflow-hidden p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl min-h-[380px] sm:min-h-[420px] flex flex-col justify-between border border-neutral-100"
             >
-              {/* Positioned Artwork at the TOP with Scale, X-axis, and Y-axis (No Hover Effect) */}
+              {/* Positioned Artwork at the TOP with Responsive Desktop & Mobile Scale, X-axis, and Y-axis */}
               <div className="relative w-full h-44 sm:h-52 mb-6 overflow-hidden flex items-center justify-center pointer-events-none select-none">
                 <div
-                  style={{
-                    transform: `translate(${item.x}px, ${item.y}px) scale(${item.scale})`,
-                    transformOrigin: "center center",
-                  }}
-                  className="w-full h-full relative"
+                  style={
+                    {
+                      "--scale-desktop": item.scale,
+                      "--x-desktop": `${item.x}px`,
+                      "--y-desktop": `${item.y}px`,
+                      "--scale-mobile": item.mobileScale,
+                      "--x-mobile": `${item.mobileX}px`,
+                      "--y-mobile": `${item.mobileY}px`,
+                      transformOrigin: "center center",
+                    } as React.CSSProperties
+                  }
+                  className="w-full h-full relative [transform:translate(var(--x-mobile),var(--y-mobile))_scale(var(--scale-mobile))] sm:[transform:translate(var(--x-desktop),var(--y-desktop))_scale(var(--scale-desktop))]"
                 >
                   <Image
                     src={item.image}

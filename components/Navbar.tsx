@@ -72,20 +72,34 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle Button */}
+        {/* Mobile Burger Style Menu Toggle Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden text-xs tracking-wider text-black py-2.5 px-6 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors cursor-pointer font-geist font-medium"
+          className="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200 active:scale-95 transition-all cursor-pointer"
           aria-label="Toggle navigation menu"
         >
-          {mobileMenuOpen ? "Close" : "Menu"}
+          <span
+            className={`w-5 h-0.5 bg-black transition-all duration-300 origin-center ${
+              mobileMenuOpen ? "rotate-45 translate-y-2" : ""
+            }`}
+          />
+          <span
+            className={`w-5 h-0.5 bg-black transition-all duration-300 ${
+              mobileMenuOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`w-5 h-0.5 bg-black transition-all duration-300 origin-center ${
+              mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
+          />
         </button>
       </div>
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white px-6 sm:px-10 py-8 space-y-6">
-          <div className="flex flex-col space-y-4 text-sm tracking-wider font-geist font-medium">
+        <div className="lg:hidden bg-white px-6 sm:px-10 py-6 border-b border-neutral-100 space-y-6 animate-fadeIn">
+          <div className="flex flex-col space-y-3 text-sm tracking-wider font-geist font-medium">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -93,17 +107,18 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-left py-2 transition-colors ${
+                  className={`text-left py-2 transition-colors flex items-center justify-between ${
                     isActive ? "text-black font-semibold" : "text-neutral-500 hover:text-black"
                   }`}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-black"></span>}
                 </Link>
               );
             })}
           </div>
 
-          <div className="pt-2">
+          <div className="pt-2 border-t border-neutral-100">
             <a
               href="https://www.ouantum.com"
               target="_blank"
@@ -117,9 +132,20 @@ export default function Navbar() {
           <Link
             href="/register"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full py-4 bg-black text-white text-xs tracking-wider font-geist font-medium text-center block rounded-full hover:bg-neutral-800"
+            className="w-full py-3.5 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium text-center rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2 group"
           >
-            Register Now
+            <span>REGISTER NOW</span>
+            <svg
+              className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
           </Link>
         </div>
       )}

@@ -8,10 +8,19 @@ import mascotImg from "@/public/images/1.png";
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
 
-  // Mascot Static Attributes: Scale, X-axis, Y-axis
+  // =========================================================================
+  // DESKTOP HERO MASCOT CONTROLS (Scale, X-axis in px, Y-axis in px) - Screen >= 640px
+  // =========================================================================
   const mascotScale = 1.10;
   const mascotX = 0; // in px
   const mascotY = -10; // in px
+
+  // =========================================================================
+  // MOBILE HERO MASCOT CONTROLS (Scale, X-axis in px, Y-axis in px) - Screen < 640px
+  // =========================================================================
+  const mascotMobileScale = 1.50;
+  const mascotMobileX = -20; // in px
+  const mascotMobileY = 80; // in px
 
   const scrollToExplore = () => {
     const element = document.getElementById("overview");
@@ -25,13 +34,20 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-[85vh] sm:min-h-[90vh] bg-white flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24 pt-6 pb-16 w-full overflow-hidden"
     >
-      {/* 3D Mascot Builder Image with Scale, X-axis, and Y-axis Attributes */}
+      {/* 3D Mascot Builder Image with Responsive Desktop & Mobile Scale, X-axis, and Y-axis Attributes */}
       <div
-        style={{
-          transform: `translate(${mascotX}px, ${mascotY}px) scale(${mascotScale})`,
-          transformOrigin: "center center",
-        }}
-        className="absolute right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 top-8 sm:top-12 md:top-16 lg:top-10 z-20 pointer-events-none select-none"
+        style={
+          {
+            "--scale-desktop": mascotScale,
+            "--x-desktop": `${mascotX}px`,
+            "--y-desktop": `${mascotY}px`,
+            "--scale-mobile": mascotMobileScale,
+            "--x-mobile": `${mascotMobileX}px`,
+            "--y-mobile": `${mascotMobileY}px`,
+            transformOrigin: "center center",
+          } as React.CSSProperties
+        }
+        className="absolute right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 top-8 sm:top-12 md:top-16 lg:top-10 z-20 pointer-events-none select-none [transform:translate(var(--x-mobile),var(--y-mobile))_scale(var(--scale-mobile))] sm:[transform:translate(var(--x-desktop),var(--y-desktop))_scale(var(--scale-desktop))]"
       >
         <div className="w-32 sm:w-48 md:w-60 lg:w-[300px] xl:w-[380px]">
           <Image

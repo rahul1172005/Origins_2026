@@ -12,30 +12,61 @@ import img12 from "@/public/images/12.png";
 export default function HowItWorks() {
   const containerRef = useRef<HTMLElement>(null);
 
-  // Stage 01 (DISCOVER) Image Attributes: Scale, X-axis, Y-axis
+  // =========================================================================
+  // DESKTOP MASCOT CONTROLS (Scale, X-axis in px, Y-axis in px) - Screen >= 640px
+  // =========================================================================
+  // Stage 01 (DISCOVER) Desktop Attributes
   const card1Scale = 1.00;
   const card1X = 0; // in px
   const card1Y = 0; // in px
 
-  // Stage 02 (DEFINE) Image Attributes: Scale, X-axis, Y-axis
+  // Stage 02 (DEFINE) Desktop Attributes
   const card2Scale = 1.0;
   const card2X = 0; // in px
   const card2Y = 0; // in px
 
-  // Stage 03 (BUILD) Image Attributes: Scale, X-axis, Y-axis
+  // Stage 03 (BUILD) Desktop Attributes
   const card3Scale = 2.0;
   const card3X = 0; // in px
   const card3Y = 0; // in px
 
-  // Stage 04 (TEST) Image Attributes: Scale, X-axis, Y-axis
+  // Stage 04 (TEST) Desktop Attributes
   const card4Scale = 1.0;
   const card4X = 0; // in px
   const card4Y = 0; // in px
 
-  // Stage 05 (PRESENT) Image Attributes: Scale, X-axis, Y-axis
+  // Stage 05 (PRESENT) Desktop Attributes
   const card5Scale = 1.0;
   const card5X = 0; // in px
   const card5Y = 0; // in px
+
+  // =========================================================================
+  // MOBILE MASCOT CONTROLS (Scale, X-axis in px, Y-axis in px) - Screen < 640px
+  // =========================================================================
+  // Stage 01 (DISCOVER) Mobile Attributes
+  const card1MobileScale = 1.00;
+  const card1MobileX = 0; // in px
+  const card1MobileY = 0; // in px
+
+  // Stage 02 (DEFINE) Mobile Attributes
+  const card2MobileScale = 1.0;
+  const card2MobileX = 0; // in px
+  const card2MobileY = 0; // in px
+
+  // Stage 03 (BUILD) Mobile Attributes
+  const card3MobileScale = 2.0;
+  const card3MobileX = 0; // in px
+  const card3MobileY = 0; // in px
+
+  // Stage 04 (TEST) Mobile Attributes
+  const card4MobileScale = 1.0;
+  const card4MobileX = 0; // in px
+  const card4MobileY = 0; // in px
+
+  // Stage 05 (PRESENT) Mobile Attributes
+  const card5MobileScale = 1.0;
+  const card5MobileX = 0; // in px
+  const card5MobileY = 0; // in px
 
   const steps = [
     {
@@ -49,6 +80,9 @@ export default function HowItWorks() {
       scale: card1Scale,
       x: card1X,
       y: card1Y,
+      mobileScale: card1MobileScale,
+      mobileX: card1MobileX,
+      mobileY: card1MobileY,
       colSpan: "lg:col-span-2",
     },
     {
@@ -62,6 +96,9 @@ export default function HowItWorks() {
       scale: card2Scale,
       x: card2X,
       y: card2Y,
+      mobileScale: card2MobileScale,
+      mobileX: card2MobileX,
+      mobileY: card2MobileY,
       colSpan: "lg:col-span-2",
     },
     {
@@ -75,6 +112,9 @@ export default function HowItWorks() {
       scale: card3Scale,
       x: card3X,
       y: card3Y,
+      mobileScale: card3MobileScale,
+      mobileX: card3MobileX,
+      mobileY: card3MobileY,
       colSpan: "lg:col-span-2",
     },
     {
@@ -88,6 +128,9 @@ export default function HowItWorks() {
       scale: card4Scale,
       x: card4X,
       y: card4Y,
+      mobileScale: card4MobileScale,
+      mobileX: card4MobileX,
+      mobileY: card4MobileY,
       colSpan: "lg:col-span-3",
     },
     {
@@ -101,6 +144,9 @@ export default function HowItWorks() {
       scale: card5Scale,
       x: card5X,
       y: card5Y,
+      mobileScale: card5MobileScale,
+      mobileX: card5MobileX,
+      mobileY: card5MobileY,
       colSpan: "lg:col-span-3",
     },
   ];
@@ -140,14 +186,21 @@ export default function HowItWorks() {
               key={index}
               className={`p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl min-h-[380px] sm:min-h-[420px] flex flex-col justify-between border border-neutral-100 ${step.colSpan}`}
             >
-              {/* Positioned Artwork at the TOP with Scale, X-axis, and Y-axis (No Hover Effect) */}
+              {/* Positioned Artwork at the TOP with Responsive Desktop & Mobile Scale, X-axis, and Y-axis */}
               <div className="relative w-full h-44 sm:h-52 mb-6 overflow-hidden flex items-center justify-center pointer-events-none select-none">
                 <div
-                  style={{
-                    transform: `translate(${step.x}px, ${step.y}px) scale(${step.scale})`,
-                    transformOrigin: "center center",
-                  }}
-                  className="w-full h-full relative"
+                  style={
+                    {
+                      "--scale-desktop": step.scale,
+                      "--x-desktop": `${step.x}px`,
+                      "--y-desktop": `${step.y}px`,
+                      "--scale-mobile": step.mobileScale,
+                      "--x-mobile": `${step.mobileX}px`,
+                      "--y-mobile": `${step.mobileY}px`,
+                      transformOrigin: "center center",
+                    } as React.CSSProperties
+                  }
+                  className="w-full h-full relative [transform:translate(var(--x-mobile),var(--y-mobile))_scale(var(--scale-mobile))] sm:[transform:translate(var(--x-desktop),var(--y-desktop))_scale(var(--scale-desktop))]"
                 >
                   <Image
                     src={step.image}

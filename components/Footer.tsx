@@ -9,10 +9,19 @@ export default function Footer() {
   const [modalContent, setModalContent] = useState<{ title: string; content: string } | null>(null);
   const footerRef = useRef<HTMLElement>(null);
 
-  // Footer Visual Graphic (13.png) Attributes: Scale, X-axis, Y-axis
+  // =========================================================================
+  // DESKTOP FOOTER VISUAL CONTROLS (Scale, X-axis in px, Y-axis in px) - Screen >= 640px
+  // =========================================================================
   const footerImgScale = 1.10;
   const footerImgX = 190; // in px
   const footerImgY = -20; // in px
+
+  // =========================================================================
+  // MOBILE FOOTER VISUAL CONTROLS (Scale, X-axis in px, Y-axis in px) - Screen < 640px
+  // =========================================================================
+  const footerImgMobileScale = 1.0;
+  const footerImgMobileX = 0; // in px
+  const footerImgMobileY = -10; // in px
 
   const openModal = (title: string, content: string) => {
     setModalContent({ title, content });
@@ -32,13 +41,20 @@ export default function Footer() {
 
       {/* 2. HEROIC CLOSING QUESTION & CTA BLOCK */}
       <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-end pt-2 sm:pt-4">
-        {/* 13.png Graphic placed in the side space of the wordings */}
+        {/* 13.png Graphic with Responsive Desktop & Mobile Scale, X-axis, and Y-axis */}
         <div
-          style={{
-            transform: `translate(${footerImgX}px, ${footerImgY}px) scale(${footerImgScale})`,
-            transformOrigin: "center center",
-          }}
-          className="absolute right-0 sm:right-4 md:right-10 lg:right-20 xl:right-28 top-0 sm:top-2 md:top-4 z-0 pointer-events-none select-none flex justify-end"
+          style={
+            {
+              "--scale-desktop": footerImgScale,
+              "--x-desktop": `${footerImgX}px`,
+              "--y-desktop": `${footerImgY}px`,
+              "--scale-mobile": footerImgMobileScale,
+              "--x-mobile": `${footerImgMobileX}px`,
+              "--y-mobile": `${footerImgMobileY}px`,
+              transformOrigin: "center center",
+            } as React.CSSProperties
+          }
+          className="absolute right-0 sm:right-4 md:right-10 lg:right-20 xl:right-28 top-0 sm:top-2 md:top-4 z-0 pointer-events-none select-none flex justify-end [transform:translate(var(--x-mobile),var(--y-mobile))_scale(var(--scale-mobile))] sm:[transform:translate(var(--x-desktop),var(--y-desktop))_scale(var(--scale-desktop))]"
         >
           <div className="w-36 sm:w-52 md:w-64 lg:w-[320px] xl:w-[380px]">
             <Image
@@ -66,12 +82,23 @@ export default function Footer() {
           </h3>
         </div>
 
-        <div className="lg:col-span-4 flex lg:justify-end relative z-10">
+        <div className="lg:col-span-4 flex lg:justify-end relative z-20 pt-4 sm:pt-0">
           <Link
             href="/register"
-            className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-geist font-medium rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block text-center"
+            className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-geist font-medium rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-flex items-center justify-center gap-3 text-center group shadow-sm"
           >
-            REGISTER NOW
+            <span>REGISTER NOW</span>
+            <svg
+              className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
           </Link>
         </div>
       </div>
