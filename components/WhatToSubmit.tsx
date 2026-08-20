@@ -48,12 +48,12 @@ export default function WhatToSubmit() {
           </div>
           <div className="lg:col-span-6 flex items-end">
             <p className="text-sm sm:text-lg lg:text-xl text-neutral-600 font-inter font-light max-w-lg leading-relaxed">
-              Explicit expectations. Every submission is evaluated by OUANTUM reviewers as an integrated engineering package consisting of six concrete modules.
+              Explicit expectations. Every submission is evaluated by OUANTUM reviewers as an integrated engineering package consisting of six concrete deliverables.
             </p>
           </div>
         </div>
 
-        {/* 6 Grid Modules */}
+        {/* 6 Grid Deliverables */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {deliverables.map((item, idx) => (
             <div

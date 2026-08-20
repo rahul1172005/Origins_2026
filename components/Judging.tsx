@@ -79,23 +79,19 @@ export default function Judging() {
               key={index}
               className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between border border-neutral-100"
             >
-              <div className="space-y-4 sm:space-y-6">
-                <div className="flex items-baseline justify-between">
-                  <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
-                    WEIGHT
-                  </span>
-                  <span className="text-3xl sm:text-5xl font-geist-thin text-black tracking-tight">
+              <div className="space-y-4">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
+                      {item.headline}
+                    </p>
+                  </div>
+                  <span className="text-3xl sm:text-5xl font-geist-thin text-black tracking-tight shrink-0">
                     {item.weight}
                   </span>
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
-                    {item.headline}
-                  </p>
                 </div>
               </div>
 
@@ -113,22 +109,44 @@ export default function Judging() {
               CHECK PRIZES & GRANTS
             </h3>
             <p className="text-xs sm:text-sm text-neutral-600 font-inter font-light">
-              ₹1,00,000 Grand Prize, ₹50,000 Runner Up, and 4 Special Recognitions.
+              $25,000 1st, $15,000 2nd, $10,000 3rd (AWS Credits), plus vouchers & internships.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/schedule"
-              className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"
+              className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-300 transition-colors inline-flex items-center justify-center gap-2 group text-center"
             >
-              ← SCHEDULE
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M13 8H3M7 12l-4-4 4-4" />
+              </svg>
+              <span>SCHEDULE</span>
             </Link>
             <Link
               href="/prizes"
-              className="px-8 py-3.5 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 transition-colors text-center"
+              className="px-8 py-3.5 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 transition-colors inline-flex items-center justify-center gap-2 group text-center"
             >
-              PRIZES →
+              <span>PRIZES</span>
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
             </Link>
           </div>
         </div>

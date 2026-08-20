@@ -21,7 +21,7 @@ export default function Philosophy() {
   const card2Y = 0; // in px
 
   // Card 3 (NO ARTIFICIAL PROBLEMS) Image Attributes: Scale, X-axis, Y-axis
-  const card3Scale = 1.0;
+  const card3Scale = 1.50;
   const card3X = 0; // in px
   const card3Y = 0; // in px
 
@@ -197,7 +197,7 @@ export default function Philosophy() {
         <div className="p-6 sm:p-14 bg-[#F5F5F5] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 border border-neutral-100">
           <div className="space-y-2 text-left">
             <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-              EXPLORE THE 10 FOCUS DOMAINS
+              EXPLORE THE 10 CHALLENGE DOMAINS
             </h3>
             <p className="text-xs sm:text-sm text-neutral-600 font-inter font-light">
               Supported by the OUANTUM venture and engineering network.
@@ -207,15 +207,37 @@ export default function Philosophy() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/"
-              className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"
+              className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-300 transition-colors inline-flex items-center justify-center gap-2 group text-center"
             >
-              ← HOME
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M13 8H3M7 12l-4-4 4-4" />
+              </svg>
+              <span>HOME</span>
             </Link>
             <Link
               href="/challenge"
-              className="px-8 py-3.5 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 transition-colors text-center"
+              className="px-8 py-3.5 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 transition-colors inline-flex items-center justify-center gap-2 group text-center"
             >
-              CHALLENGES →
+              <span>CHALLENGES</span>
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
             </Link>
           </div>
         </div>

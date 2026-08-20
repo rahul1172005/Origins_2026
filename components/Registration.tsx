@@ -217,9 +217,15 @@ export default function Registration() {
               </h2>
             </div>
             <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
-              <p className="text-sm sm:text-lg lg:text-xl text-neutral-600 font-inter font-light max-w-lg leading-relaxed">
-                Official registration for the <a href="https://www.ouantum.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 font-semibold text-black hover:opacity-75">OUANTUM</a> (<span className="font-mono text-xs text-neutral-500">www.ouantum.com</span>) ORIGINS 2026 cohort. Secure your team or individual entry. Complete verification details below.
-              </p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-500 font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                  <span>100% FREE REGISTRATION • ZERO ENTRY FEES</span>
+                </div>
+                <p className="text-sm sm:text-lg lg:text-xl text-neutral-600 font-inter font-light max-w-lg leading-relaxed">
+                  Official registration for the <a href="https://www.ouantum.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 font-semibold text-black hover:opacity-75">OUANTUM</a> (<span className="font-mono text-xs text-neutral-500">www.ouantum.com</span>) ORIGINS 2026 cohort. Secure your team or individual entry. Complete verification details below.
+                </p>
+              </div>
               <div className="flex items-center gap-4 pt-2">
                 <button
                   type="button"
@@ -228,7 +234,7 @@ export default function Registration() {
                     setLookupResult(null);
                     setLookupError("");
                   }}
-                  className="text-xs uppercase tracking-widest text-black underline underline-offset-4 hover:opacity-70 cursor-pointer font-inter font-medium"
+                  className="text-xs uppercase tracking-widest text-black underline underline-offset-4 hover:opacity-70 cursor-pointer font-geist font-medium"
                 >
                   {lookupMode ? "RETURN TO REGISTRATION FORM" : "LOOKUP EXISTING REGISTRATION ID"}
                 </button>
@@ -264,7 +270,7 @@ export default function Registration() {
                   />
                   <button
                     type="submit"
-                    className="px-8 py-3.5 sm:py-4 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 cursor-pointer text-center"
+                    className="px-8 py-3.5 sm:py-4 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 cursor-pointer text-center"
                   >
                     VERIFY ID
                   </button>
@@ -432,14 +438,14 @@ export default function Registration() {
             <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
               <button
                 onClick={() => handleCopyId(submittedData.id)}
-                className="px-8 py-4 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer text-center"
+                className="px-8 py-4 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer text-center"
               >
                 {copiedNotification ? "COPIED TO CLIPBOARD" : "COPY REGISTRATION ID"}
               </button>
 
               <button
                 onClick={() => window.print()}
-                className="px-8 py-4 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 active:scale-[0.98] transition-all cursor-pointer text-center"
+                className="px-8 py-4 bg-neutral-200 text-black text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-300 active:scale-[0.98] transition-all cursor-pointer text-center"
               >
                 PRINT / SAVE PASS
               </button>
@@ -462,7 +468,7 @@ export default function Registration() {
                     agreedToRules: false,
                   });
                 }}
-                className="px-8 py-4 bg-transparent text-neutral-600 text-xs uppercase tracking-widest font-inter rounded-full hover:text-black transition-colors cursor-pointer text-center"
+                className="px-8 py-4 bg-transparent text-neutral-600 text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:text-black transition-colors cursor-pointer text-center"
               >
                 REGISTER ANOTHER
               </button>
@@ -473,29 +479,35 @@ export default function Registration() {
           <form onSubmit={handleSubmit} className="space-y-8 sm:space-y-10 max-w-3xl">
             {/* Track Switcher */}
             <div className="space-y-4">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <button
-                  type="button"
-                  onClick={() => setTrack("INDIVIDUAL")}
-                  className={`flex-1 sm:flex-none px-6 sm:px-8 py-3.5 text-xs uppercase tracking-widest font-inter rounded-full transition-all cursor-pointer text-center ${
-                    track === "INDIVIDUAL"
-                      ? "bg-black text-white"
-                      : "bg-[#F5F5F5] text-black hover:bg-neutral-200"
-                  }`}
-                >
-                  INDIVIDUAL
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setTrack("TEAM")}
-                  className={`flex-1 sm:flex-none px-6 sm:px-8 py-3.5 text-xs uppercase tracking-widest font-inter rounded-full transition-all cursor-pointer text-center ${
-                    track === "TEAM"
-                      ? "bg-black text-white"
-                      : "bg-[#F5F5F5] text-black hover:bg-neutral-200"
-                  }`}
-                >
-                  TEAM
-                </button>
+              <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 flex-1 sm:flex-none">
+                  <button
+                    type="button"
+                    onClick={() => setTrack("INDIVIDUAL")}
+                    className={`flex-1 sm:flex-none px-6 sm:px-8 py-3.5 text-xs uppercase tracking-widest font-geist font-medium rounded-full transition-all cursor-pointer text-center ${
+                      track === "INDIVIDUAL"
+                        ? "bg-black text-white"
+                        : "bg-[#F5F5F5] text-black hover:bg-neutral-200"
+                    }`}
+                  >
+                    INDIVIDUAL
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTrack("TEAM")}
+                    className={`flex-1 sm:flex-none px-6 sm:px-8 py-3.5 text-xs uppercase tracking-widest font-geist font-medium rounded-full transition-all cursor-pointer text-center ${
+                      track === "TEAM"
+                        ? "bg-black text-white"
+                        : "bg-[#F5F5F5] text-black hover:bg-neutral-200"
+                    }`}
+                  >
+                    TEAM
+                  </button>
+                </div>
+                <span className="text-xs uppercase tracking-widest text-neutral-500 font-mono flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                  100% FREE ENTRY
+                </span>
               </div>
             </div>
 
@@ -750,9 +762,20 @@ export default function Registration() {
                 <div className="pt-2 sm:pt-4">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer block text-center"
+                    className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-geist font-medium rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-flex items-center justify-center gap-3 text-center group"
                   >
-                    SUBMIT REGISTRATION →
+                    <span>SUBMIT REGISTRATION</span>
+                    <svg
+                      className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M3 8h10M9 4l4 4-4 4" />
+                    </svg>
                   </button>
                 </div>
               </div>

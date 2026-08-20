@@ -35,6 +35,10 @@ export default function WhoCanParticipate() {
             </div>
 
             <div className="space-y-3 sm:space-y-4 pt-2 sm:pt-4">
+              <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-500 font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                <span>100% FREE PARTICIPATION • ZERO ENTRY FEES</span>
+              </div>
               <p className="text-base sm:text-2xl text-neutral-600 font-inter font-light leading-relaxed">
                 You don&apos;t need to fit into a particular category.
               </p>

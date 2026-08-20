@@ -157,34 +157,30 @@ export default function Challenge() {
           </div>
         </div>
 
-        {/* 10 Challenge Domains: Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        {/* 10 Challenge Domains: Responsive Grid with Independent Card Expansion */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-start">
           {domains.map((domain) => {
             const isSelected = activeDomain === domain.id;
 
             return (
-              <div key={domain.id}>
+              <div key={domain.id} className="w-full">
                 <div
                   onClick={() => setActiveDomain(isSelected ? null : domain.id)}
-                  className="p-6 sm:p-12 bg-[#F5F5F5] rounded-3xl space-y-6 sm:space-y-8 flex flex-col justify-between cursor-pointer h-full border border-neutral-100 transition-colors hover:bg-neutral-200/70"
+                  className="p-6 sm:p-10 bg-[#F5F5F5] rounded-3xl space-y-4 sm:space-y-6 cursor-pointer border border-neutral-100 transition-all hover:bg-neutral-200/70 select-none"
                 >
-                  <div className="relative z-10 space-y-4 sm:space-y-6">
-                    <div className="flex items-baseline justify-between">
-                      <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter">
-                        FOCUS DOMAIN
-                      </span>
-                      <span className="text-xs uppercase tracking-widest text-neutral-500 font-inter font-medium">
+                  <div className="relative z-10 space-y-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-1.5 sm:space-y-2">
+                        <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
+                          {domain.title}
+                        </h3>
+                        <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
+                          {domain.headline}
+                        </p>
+                      </div>
+                      <span className="text-xs uppercase tracking-widest text-neutral-500 font-geist font-medium shrink-0 pt-1">
                         {isSelected ? "COLLAPSE" : "EXPLORE SCOPE"}
                       </span>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
-                        {domain.title}
-                      </h3>
-                      <p className="text-sm sm:text-base text-neutral-900 font-inter font-normal leading-snug">
-                        {domain.headline}
-                      </p>
                     </div>
                   </div>
 
@@ -194,7 +190,7 @@ export default function Challenge() {
 
                   {/* Expanded Problem Archetypes */}
                   {isSelected && (
-                    <div className="relative z-10 pt-4 space-y-3">
+                    <div className="relative z-10 pt-2 space-y-3 animate-fadeIn">
                       <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter block">
                         EXEMPLARY PROBLEM ARCHETYPES
                       </span>
@@ -231,15 +227,37 @@ export default function Challenge() {
           <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/philosophy"
-              className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"
+              className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-300 transition-colors inline-flex items-center justify-center gap-2 group text-center"
             >
-              ← PHILOSOPHY
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M13 8H3M7 12l-4-4 4-4" />
+              </svg>
+              <span>PHILOSOPHY</span>
             </Link>
             <Link
               href="/process"
-              className="px-8 py-3.5 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 transition-colors text-center"
+              className="px-8 py-3.5 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 transition-colors inline-flex items-center justify-center gap-2 group text-center"
             >
-              PROCESS →
+              <span>PROCESS</span>
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
             </Link>
           </div>
         </div>

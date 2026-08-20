@@ -2,10 +2,17 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import img13 from "@/public/images/13.png";
 
 export default function Footer() {
   const [modalContent, setModalContent] = useState<{ title: string; content: string } | null>(null);
   const footerRef = useRef<HTMLElement>(null);
+
+  // Footer Visual Graphic (13.png) Attributes: Scale, X-axis, Y-axis
+  const footerImgScale = 1.10;
+  const footerImgX = 190; // in px
+  const footerImgY = -20; // in px
 
   const openModal = (title: string, content: string) => {
     setModalContent({ title, content });
@@ -24,8 +31,28 @@ export default function Footer() {
       </div>
 
       {/* 2. HEROIC CLOSING QUESTION & CTA BLOCK */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-end pt-2 sm:pt-4">
-        <div className="lg:col-span-8 space-y-2 sm:space-y-4">
+      <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-end pt-2 sm:pt-4">
+        {/* 13.png Graphic placed in the side space of the wordings */}
+        <div
+          style={{
+            transform: `translate(${footerImgX}px, ${footerImgY}px) scale(${footerImgScale})`,
+            transformOrigin: "center center",
+          }}
+          className="absolute right-0 sm:right-4 md:right-10 lg:right-20 xl:right-28 top-0 sm:top-2 md:top-4 z-0 pointer-events-none select-none flex justify-end"
+        >
+          <div className="w-36 sm:w-52 md:w-64 lg:w-[320px] xl:w-[380px]">
+            <Image
+              src={img13}
+              alt="Origins 2026 Question Visual"
+              priority
+              sizes="(max-width: 640px) 144px, (max-width: 768px) 208px, (max-width: 1024px) 256px, 380px"
+              quality={90}
+              className="w-full h-auto object-contain will-change-transform"
+            />
+          </div>
+        </div>
+
+        <div className="lg:col-span-8 space-y-2 sm:space-y-4 relative z-10">
           <h2 className="text-2xl sm:text-6xl md:text-7xl lg:text-8xl font-geist-thin uppercase tracking-tight text-black leading-none">
             EVERYTHING<br />
             STARTS WITH<br />
@@ -39,10 +66,10 @@ export default function Footer() {
           </h3>
         </div>
 
-        <div className="lg:col-span-4 flex lg:justify-end">
+        <div className="lg:col-span-4 flex lg:justify-end relative z-10">
           <Link
             href="/register"
-            className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block text-center"
+            className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-geist font-medium rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block text-center"
           >
             REGISTER NOW
           </Link>
@@ -71,10 +98,10 @@ export default function Footer() {
 
         {/* Col 2: Navigation Links */}
         <div className="space-y-2 sm:space-y-4">
-          <h5 className="text-xs tracking-wider text-neutral-400 font-inter font-medium">
+          <h5 className="text-xs tracking-wider text-neutral-400 font-geist font-medium">
             Pages
           </h5>
-          <ul className="space-y-2 text-xs tracking-wide text-neutral-700 font-inter">
+          <ul className="space-y-2 text-xs tracking-wide text-neutral-700 font-geist font-medium">
             <li>
               <Link href="/" className="hover:text-black transition-colors">
                 Home
@@ -120,10 +147,10 @@ export default function Footer() {
 
         {/* Col 3: Resources & Channels */}
         <div className="space-y-2 sm:space-y-4">
-          <h5 className="text-xs tracking-wider text-neutral-400 font-inter font-medium">
+          <h5 className="text-xs tracking-wider text-neutral-400 font-geist font-medium">
             Resources & Channels
           </h5>
-          <ul className="space-y-2 text-xs tracking-wide text-neutral-700 font-inter">
+          <ul className="space-y-2 text-xs tracking-wide text-neutral-700 font-geist font-medium">
             <li>
               <a
                 href="https://www.ouantum.com"
@@ -152,7 +179,7 @@ export default function Footer() {
                 onClick={() =>
                   openModal(
                     "CONTACT OUANTUM ORIGINS",
-                    "Official Portal: www.ouantum.com\nDirect Inquiries: origins@ouantum.org\nPress & Institutional Partnerships: press@ouantum.org\nEmergency Builder Support: +1 (555) 202-6000\nOUANTUM Innovation Campus, Global Engineering Network."
+                    "Official Portal: www.ouantum.com\nFounders: founders@ouantum.com\nDirect Inquiries: origins@ouantum.org\nPress & Institutional Partnerships: press@ouantum.org\nEmergency Builder Support: +1 (555) 202-6000\nOUANTUM Innovation Campus, Global Engineering Network."
                   )
                 }
                 className="hover:text-black transition-colors cursor-pointer text-left"
@@ -162,7 +189,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/ouantum.ai/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-black transition-colors block"
@@ -172,22 +199,12 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/ouantum"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-black transition-colors block"
               >
                 LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-black transition-colors block"
-              >
-                GitHub
               </a>
             </li>
           </ul>
@@ -196,7 +213,7 @@ export default function Footer() {
         {/* Col 4: Edition / Copyright */}
         <div className="space-y-2 sm:space-y-4 flex flex-col justify-between">
           <div className="space-y-2">
-            <h5 className="text-xs tracking-wider text-neutral-400 font-inter font-medium">
+            <h5 className="text-xs tracking-wider text-neutral-400 font-geist font-medium">
               Edition 2026
             </h5>
             <p className="text-xs text-neutral-600 font-inter font-light leading-relaxed">
@@ -204,7 +221,7 @@ export default function Footer() {
             </p>
           </div>
           <div className="space-y-1 pt-2 sm:pt-4">
-            <p className="text-xs tracking-wider text-neutral-400 font-inter">
+            <p className="text-xs tracking-wider text-neutral-400 font-geist">
               © 2026 OUANTUM
             </p>
             <a
@@ -232,7 +249,7 @@ export default function Footer() {
             <div className="pt-2 sm:pt-4 flex justify-end">
               <button
                 onClick={() => setModalContent(null)}
-                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 cursor-pointer"
+                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 cursor-pointer"
               >
                 CLOSE NOTICE
               </button>

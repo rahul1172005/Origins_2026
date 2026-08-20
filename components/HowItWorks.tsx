@@ -13,7 +13,7 @@ export default function HowItWorks() {
   const containerRef = useRef<HTMLElement>(null);
 
   // Stage 01 (DISCOVER) Image Attributes: Scale, X-axis, Y-axis
-  const card1Scale = 1.0;
+  const card1Scale = 1.00;
   const card1X = 0; // in px
   const card1Y = 0; // in px
 
@@ -23,7 +23,7 @@ export default function HowItWorks() {
   const card2Y = 0; // in px
 
   // Stage 03 (BUILD) Image Attributes: Scale, X-axis, Y-axis
-  const card3Scale = 1.0;
+  const card3Scale = 2.0;
   const card3X = 0; // in px
   const card3Y = 0; // in px
 
@@ -162,10 +162,6 @@ export default function HowItWorks() {
 
               {/* Card Text Content */}
               <div className="space-y-4">
-                <span className="text-xs uppercase tracking-widest text-neutral-400 font-inter block">
-                  {step.stage}
-                </span>
-
                 <div className="space-y-2">
                   <h3 className="text-xl sm:text-3xl font-geist-light uppercase tracking-tight text-black">
                     {step.title}
@@ -197,15 +193,37 @@ export default function HowItWorks() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full md:w-auto">
             <Link
               href="/challenge"
-              className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-300 transition-colors text-center"
+              className="px-8 py-3.5 bg-neutral-200 text-black text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-300 transition-colors inline-flex items-center justify-center gap-2 group text-center"
             >
-              ← CHALLENGES
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M13 8H3M7 12l-4-4 4-4" />
+              </svg>
+              <span>CHALLENGES</span>
             </Link>
             <Link
               href="/schedule"
-              className="px-8 py-3.5 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 transition-colors text-center"
+              className="px-8 py-3.5 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 transition-colors inline-flex items-center justify-center gap-2 group text-center"
             >
-              SCHEDULE →
+              <span>SCHEDULE</span>
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
             </Link>
           </div>
         </div>

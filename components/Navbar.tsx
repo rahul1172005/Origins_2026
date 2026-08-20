@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { label: "About", href: "/" },
+    { label: "Home", href: "/" },
     { label: "Philosophy", href: "/philosophy" },
     { label: "Challenge", href: "/challenge" },
     { label: "Process", href: "/process" },
@@ -43,7 +43,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation (Title case, not all caps) */}
-        <nav className="hidden lg:flex items-center gap-8 text-xs tracking-wider font-inter">
+        <nav className="hidden lg:flex items-center gap-8 text-xs tracking-wider font-geist font-medium">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -66,7 +66,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-4">
           <Link
             href="/register"
-            className="px-8 py-3 bg-black text-white text-xs tracking-wider font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block"
+            className="px-8 py-3 bg-black text-white text-xs tracking-wider font-geist font-medium rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer inline-block"
           >
             Register
           </Link>
@@ -75,7 +75,7 @@ export default function Navbar() {
         {/* Mobile Menu Toggle Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden text-xs tracking-wider text-black py-2.5 px-6 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors cursor-pointer font-medium"
+          className="lg:hidden text-xs tracking-wider text-black py-2.5 px-6 rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors cursor-pointer font-geist font-medium"
           aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? "Close" : "Menu"}
@@ -85,7 +85,7 @@ export default function Navbar() {
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white px-6 sm:px-10 py-8 space-y-6">
-          <div className="flex flex-col space-y-4 text-sm tracking-wider font-inter">
+          <div className="flex flex-col space-y-4 text-sm tracking-wider font-geist font-medium">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -117,7 +117,7 @@ export default function Navbar() {
           <Link
             href="/register"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full py-4 bg-black text-white text-xs tracking-wider font-inter text-center block rounded-full hover:bg-neutral-800"
+            className="w-full py-4 bg-black text-white text-xs tracking-wider font-geist font-medium text-center block rounded-full hover:bg-neutral-800"
           >
             Register Now
           </Link>

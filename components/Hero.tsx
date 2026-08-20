@@ -79,20 +79,33 @@ export default function Hero() {
               (<span className="font-mono text-xs sm:text-sm text-neutral-500">www.ouantum.com</span>) for ideas that solve real problems, improve lives, and create meaningful systemic impact.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
-              <Link
-                href="/register"
-                className="px-8 sm:px-10 py-3.5 sm:py-4 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer text-center inline-block"
-              >
-                REGISTER NOW
-              </Link>
+            <div className="pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+                <Link
+                  href="/register"
+                  className="px-8 sm:px-10 py-3.5 sm:py-4 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 active:scale-[0.98] transition-all cursor-pointer text-center inline-block"
+                >
+                  REGISTER NOW
+                </Link>
 
-              <button
-                onClick={scrollToExplore}
-                className="px-8 sm:px-10 py-3.5 sm:py-4 bg-neutral-100 text-black text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-200 active:scale-[0.98] transition-all cursor-pointer text-center"
-              >
-                EXPLORE ORIGINS ↓
-              </button>
+                <button
+                  onClick={scrollToExplore}
+                  className="px-8 sm:px-10 py-3.5 sm:py-4 bg-neutral-100 text-black text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-200 active:scale-[0.98] transition-all cursor-pointer inline-flex items-center justify-center gap-2 text-center group"
+                >
+                  <span>EXPLORE ORIGINS</span>
+                  <svg
+                    className="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M8 3v10M4 9l4 4 4-4" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>

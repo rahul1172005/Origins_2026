@@ -157,9 +157,20 @@ export default function About() {
         <div className="pt-4 flex justify-end">
           <Link
             href="/philosophy"
-            className="px-8 py-4 bg-black text-white text-xs uppercase tracking-widest font-inter rounded-full hover:bg-neutral-800 transition-colors"
+            className="px-8 py-4 bg-black text-white text-xs uppercase tracking-widest font-geist font-medium rounded-full hover:bg-neutral-800 transition-colors inline-flex items-center gap-2 group"
           >
-            EXPLORE FULL PHILOSOPHY →
+            <span>EXPLORE FULL PHILOSOPHY</span>
+            <svg
+              className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
           </Link>
         </div>
       </div>

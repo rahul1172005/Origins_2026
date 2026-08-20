@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-geist: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: var(--font-inter-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 @layer base {
   :root {
     --font-geist: var(--font-geist-sans);
@@ -19,6 +24,8 @@
     background-color: #ffffff;
     color: #000000;
     font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
   }
 
   body {
@@ -28,6 +35,23 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  /* Hide scrollbars completely across WebKit browsers (Chrome, Safari, Edge) */
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar,
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
   }
 
   /* Headings with Geist Thin / Light */
@@ -36,9 +60,22 @@
     font-weight: 200;
     letter-spacing: -0.04em;
   }
+
+  /* All Buttons & Button Controls default to Geist font */
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  [role="button"] {
+    font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
 }
 
-/* Custom utility styles for ultra-thin refined typography */
+/* Custom utility styles for Geist typography */
+.font-geist {
+  font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 .font-geist-thin {
   font-family: var(--font-geist), sans-serif;
   font-weight: 100;
@@ -52,6 +89,21 @@
 .font-geist-normal {
   font-family: var(--font-geist), sans-serif;
   font-weight: 300;
+}
+
+.font-geist-regular {
+  font-family: var(--font-geist), sans-serif;
+  font-weight: 400;
+}
+
+.font-geist-medium {
+  font-family: var(--font-geist), sans-serif;
+  font-weight: 500;
+}
+
+.font-geist-semibold {
+  font-family: var(--font-geist), sans-serif;
+  font-weight: 600;
 }
 
 .font-inter {
