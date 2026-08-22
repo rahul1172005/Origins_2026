@@ -19,6 +19,13 @@ const interSans = Inter({
 export const metadata: Metadata = {
   title: "ORIGINS 2026 — BUILD WHAT SHOULD EXIST",
   description: "A 24-hour innovation hackathon for ideas that solve real problems, improve lives, and create meaningful impact.",
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
