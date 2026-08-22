@@ -243,17 +243,30 @@ export default function Home() {
                 </div>
               </a>
 
-              {/* Card 5: Empty Card */}
-              <div className="p-6 sm:p-8 bg-neutral-50/60 rounded-3xl flex flex-col justify-between min-h-[140px] sm:min-h-[160px] border border-dashed border-neutral-200">
-                <span className="text-[10px] uppercase tracking-widest text-neutral-300 font-inter">
-                  &nbsp;
-                </span>
-                <div>
-                  <div className="w-8 h-8 rounded-full border border-dashed border-neutral-300 flex items-center justify-center text-neutral-300 text-sm font-light">
-                    +
-                  </div>
+              {/* Card 5: Metasips */}
+              <a
+                href="https://www.metasips.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-6 sm:p-8 bg-[#F5F5F5] rounded-3xl space-y-4 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] border border-neutral-100 transition-all hover:bg-neutral-200/80 cursor-pointer block"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-inter">
+                    PARTNER
+                  </span>
+                  <span className="text-xs text-neutral-400 group-hover:text-black transition-colors">
+                    ↗
+                  </span>
                 </div>
-              </div>
+                <div className="space-y-1">
+                  <h4 className="text-lg sm:text-xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
+                    Metasips
+                  </h4>
+                  <p className="text-xs text-neutral-500 font-inter font-light">
+                    Metasips Pvt Ltd
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
 
