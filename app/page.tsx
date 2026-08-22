@@ -143,130 +143,91 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-              {/* Card 1: Ouantum */}
-              <a
-                href="https://www.ouantum.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-6 sm:p-8 bg-[#F5F5F5] rounded-3xl space-y-4 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] border border-neutral-100 transition-all hover:bg-neutral-200/80 cursor-pointer block"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-inter">
-                    FOUNDING
-                  </span>
-                  <span className="text-xs text-neutral-400 group-hover:text-black transition-colors">
-                    ↗
-                  </span>
+              {[
+                {
+                  role: "FOUNDING",
+                  name: "Ouantum",
+                  desc: "Applied AI & Ecosystem",
+                  url: "https://www.ouantum.com",
+                  linkedin: "https://www.linkedin.com/company/ouantum",
+                },
+                {
+                  role: "PARTNER",
+                  name: "Cybercom",
+                  desc: "Computing Infrastructure",
+                  url: "https://www.cybercomctf.com/",
+                  linkedin: "https://www.linkedin.com/company/cybercomctf/",
+                },
+                {
+                  role: "PARTNER",
+                  name: "Zapsters",
+                  desc: "Product & Engineering",
+                  url: "https://zapsters.in",
+                  linkedin: "https://www.linkedin.com/company/zapsters/",
+                },
+                {
+                  role: "PARTNER",
+                  name: "Etherence",
+                  desc: "Protocols & Research",
+                  url: "https://etherence.com/",
+                  linkedin: "https://www.linkedin.com/company/etherence/",
+                },
+                {
+                  role: "PARTNER",
+                  name: "Metasips",
+                  desc: "Metasips Pvt Ltd",
+                  url: "https://www.metasips.com",
+                  linkedin: "https://www.linkedin.com/company/metasips/",
+                },
+              ].map((p, idx) => (
+                <div
+                  key={idx}
+                  className="group p-6 sm:p-8 bg-[#F5F5F5] rounded-3xl space-y-4 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] border border-neutral-100 transition-all hover:bg-neutral-200/80 block relative"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-inter">
+                      {p.role}
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <a
+                        href={p.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-6 h-6 rounded-full bg-neutral-200/80 hover:bg-black hover:text-white text-neutral-500 flex items-center justify-center transition-colors"
+                        title={`${p.name} on LinkedIn`}
+                        aria-label={`${p.name} LinkedIn`}
+                      >
+                        <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                        </svg>
+                      </a>
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-6 h-6 rounded-full bg-neutral-200/80 hover:bg-black hover:text-white text-neutral-500 flex items-center justify-center transition-colors text-xs"
+                        title={`Visit ${p.name}`}
+                        aria-label={`Visit ${p.name}`}
+                      >
+                        ↗
+                      </a>
+                    </div>
+                  </div>
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="space-y-1 block"
+                  >
+                    <h4 className="text-lg sm:text-xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
+                      {p.name}
+                    </h4>
+                    <p className="text-xs text-neutral-500 font-inter font-light">
+                      {p.desc}
+                    </p>
+                  </a>
                 </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg sm:text-xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
-                    Ouantum
-                  </h4>
-                  <p className="text-xs text-neutral-500 font-inter font-light">
-                    Applied AI & Ecosystem
-                  </p>
-                </div>
-              </a>
-
-              {/* Card 2: Cybercom */}
-              <a
-                href="https://www.cybercomctf.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-6 sm:p-8 bg-[#F5F5F5] rounded-3xl space-y-4 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] border border-neutral-100 transition-all hover:bg-neutral-200/80 cursor-pointer block"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-inter">
-                    PARTNER
-                  </span>
-                  <span className="text-xs text-neutral-400 group-hover:text-black transition-colors">
-                    ↗
-                  </span>
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg sm:text-xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
-                    Cybercom
-                  </h4>
-                  <p className="text-xs text-neutral-500 font-inter font-light">
-                    Computing Infrastructure
-                  </p>
-                </div>
-              </a>
-
-              {/* Card 3: Zapsters */}
-              <a
-                href="https://zapsters.in"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-6 sm:p-8 bg-[#F5F5F5] rounded-3xl space-y-4 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] border border-neutral-100 transition-all hover:bg-neutral-200/80 cursor-pointer block"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-inter">
-                    PARTNER
-                  </span>
-                  <span className="text-xs text-neutral-400 group-hover:text-black transition-colors">
-                    ↗
-                  </span>
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg sm:text-xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
-                    Zapsters
-                  </h4>
-                  <p className="text-xs text-neutral-500 font-inter font-light">
-                    Product & Engineering
-                  </p>
-                </div>
-              </a>
-
-              {/* Card 4: Etherence */}
-              <a
-                href="https://etherence.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-6 sm:p-8 bg-[#F5F5F5] rounded-3xl space-y-4 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] border border-neutral-100 transition-all hover:bg-neutral-200/80 cursor-pointer block"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-inter">
-                    PARTNER
-                  </span>
-                  <span className="text-xs text-neutral-400 group-hover:text-black transition-colors">
-                    ↗
-                  </span>
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg sm:text-xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
-                    Etherence
-                  </h4>
-                  <p className="text-xs text-neutral-500 font-inter font-light">
-                    Protocols & Research
-                  </p>
-                </div>
-              </a>
-
-              {/* Card 5: Metasips */}
-              <a
-                href="https://www.metasips.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-6 sm:p-8 bg-[#F5F5F5] rounded-3xl space-y-4 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] border border-neutral-100 transition-all hover:bg-neutral-200/80 cursor-pointer block"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-inter">
-                    PARTNER
-                  </span>
-                  <span className="text-xs text-neutral-400 group-hover:text-black transition-colors">
-                    ↗
-                  </span>
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg sm:text-xl font-geist-light uppercase tracking-tight text-black group-hover:opacity-80 transition-opacity">
-                    Metasips
-                  </h4>
-                  <p className="text-xs text-neutral-500 font-inter font-light">
-                    Metasips Pvt Ltd
-                  </p>
-                </div>
-              </a>
+              ))}
             </div>
           </div>
 
