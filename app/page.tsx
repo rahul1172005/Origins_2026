@@ -156,14 +156,14 @@ export default function Home() {
                   name: "Cybercom",
                   desc: "Computing Infrastructure",
                   url: "https://www.cybercomctf.com/",
-                  linkedin: "https://www.linkedin.com/company/cybercomctf/",
+                  linkedin: "https://www.linkedin.com/company/cybercom-ctf",
                 },
                 {
                   role: "PARTNER",
                   name: "Zapsters",
                   desc: "Product & Engineering",
                   url: "https://zapsters.in",
-                  linkedin: "https://www.linkedin.com/company/zapsters/",
+                  linkedin: "https://www.linkedin.com/company/zapsters-inc",
                 },
                 {
                   role: "PARTNER",
@@ -177,7 +177,7 @@ export default function Home() {
                   name: "Metasips",
                   desc: "Metasips Pvt Ltd",
                   url: "https://www.metasips.com",
-                  linkedin: "https://www.linkedin.com/company/metasips/",
+                  linkedin: "https://www.linkedin.com/company/metasips-pvt-ltd",
                 },
               ].map((p, idx) => (
                 <div
