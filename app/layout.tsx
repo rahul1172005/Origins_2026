@@ -30,8 +30,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${interSans.variable} bg-white text-black`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen bg-white text-black font-inter antialiased selection:bg-black selection:text-white">
+      <body
+        className="min-h-screen bg-white text-black font-inter antialiased selection:bg-black selection:text-white"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
